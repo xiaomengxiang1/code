@@ -65,20 +65,102 @@
 //printf("%d\n",strlen("c:\test\628\test.c"));
 //一共14个字符\t算一个\62算一个
 
+// #include <stdio.h>
+// int Add(int x, int y) {
+//     int z = 0;
+//     z = x + y;
+//     return z;
+// }
+
+// int main() {
+//     int a = 0;
+//     int b = 0;
+//     //输入
+//     scanf("%d %d", &a, &b);
+//     int sum = Add(a,b);
+//     printf("a + b = %d\n",sum);
+//     return 0;
+// }
+
+
+//int a = 0;    初始化
+//a = 10;       赋值
+
+//int a = 10;
+//int b = a++;
+//int b = a; a = a + 1;
+//后置++，先使用后++
+
+//后置++，先++后使用
+//--同理
+
+//  && 与
+//  || 或
+
+//typedef(类型重命名) 相当于重命名 python中的as
+
+//static修饰过后的局部变量，局部变量出作用域后，不销毁
+//本质上。static修饰局部变量的时候，改变了变量的存储位置
+//改变了生命周期，生命周期变长
+
+// 栈区     局部变量
+
+// 堆区
+
+// 静态区   静态变量
+
+//函数前面的    void    意思是不需要任何的返回
+
+//extern    在文件中声明其他文件的变量，函数，从而使用其他文件的东西，应该相当于python的import
+//static修饰全局变量的时候其它.c文件无法调用(外部链接属性变成内部链接属性)
+
+// #include <stdio.h>
+// int main() {
+//     int a = 1;
+//     printf("%p\n",&a); //%p打印地址
+//     int* p = &a;
+
+//     //* 说明p是指针变量
+//     //int 说明了指针指向的变量是int类型
+//     //p 是指针变量
+
+//     *p = 2;
+//     //解引用操作符，通过p中存放的地址找到p指向的对象
+//     printf("%d\n",a);
+//     return 0;
+// }
+
+//结构体
+//像python里的类
+
+//学生
 #include <stdio.h>
-int Add(int x, int y) {
-    int z = 0;
-    z = x + y;
-    return z;
+struct Stu {
+
+    //成员
+    char name[20];
+    int age;
+    char sex[10];
+    char tale[12];
+};
+
+//指针变量ps指向struct Stu类型
+//*ps就是s(指向s内存地址)
+void print(struct Stu* ps) {
+    printf("%s %d %s %s\n", (*ps).name, (*ps).age, (*ps).sex, (*ps).tale);
+
+    // ->
+    //结构体指针变量->成员名
+    printf("%s %d %s %s\n", ps->name, ps->age, ps->sex, ps->tale);
 }
 
 int main() {
-    int a = 0;
-    int b = 0;
-    //输入
-    scanf("%d %d", &a, &b);
-    int sum = Add(a,b);
-    printf("a + b = %d\n",sum);
+
+    struct Stu s = {"zhangsan", 20, "nan", "10086"};
+
+    //结构体.成员
+    // printf("%s %d %s %s\n", s.name, s.age, s.sex, s.tale);  //%s用于打印 字符串（char 数组或 char 指针）
+
+    print(&s);
     return 0;
 }
-
