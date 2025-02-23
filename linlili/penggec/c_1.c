@@ -1,3 +1,6 @@
+//-----------------------------------------------初识c----------------------------------------
+
+
 // 局部变量     -{}内部定义的变量
 // 全局变量     -{}外部定义的变量
 
@@ -55,7 +58,7 @@
 //  \ddd ddd表示1到3个的八进制数字 如：\130 x
 //  \xdd dd表示2个十六进制的数字 如\x63 c
 
-// #include <stdio.h>
+// #include <stdio.h>修饰过后的局部变量，
 
 // int main() {
 //     printf("%c\n",'\130');
@@ -99,7 +102,7 @@
 
 //typedef(类型重命名) 相当于重命名 python中的as
 
-//static修饰过后的局部变量，局部变量出作用域后，不销毁
+//static局部变量出作用域后，不销毁
 //本质上。static修饰局部变量的时候，改变了变量的存储位置
 //改变了生命周期，生命周期变长
 
@@ -134,33 +137,51 @@
 //像python里的类
 
 //学生
-#include <stdio.h>
-struct Stu {
+// #include <stdio.h>
+// struct Stu {
 
-    //成员
-    char name[20];
-    int age;
-    char sex[10];
-    char tale[12];
-};
+//     //成员
+//     char name[20];
+//     int age;
+//     char sex[10];
+//     char tale[12];
+// };
 
-//指针变量ps指向struct Stu类型
-//*ps就是s(指向s内存地址)
-void print(struct Stu* ps) {
-    printf("%s %d %s %s\n", (*ps).name, (*ps).age, (*ps).sex, (*ps).tale);
+// //指针变量ps指向struct Stu类型
+// //*ps就是s(指向s内存地址)
+// void print(struct Stu* ps) {
+//     printf("%s %d %s %s\n", (*ps).name, (*ps).age, (*ps).sex, (*ps).tale);
 
-    // ->
-    //结构体指针变量->成员名
-    printf("%s %d %s %s\n", ps->name, ps->age, ps->sex, ps->tale);
-}
+//     // ->
+//     //结构体指针变量->成员名
+//     printf("%s %d %s %s\n", ps->name, ps->age, ps->sex, ps->tale);
+// }
 
-int main() {
+// int main() {
 
-    struct Stu s = {"zhangsan", 20, "nan", "10086"};
+//     struct Stu s = {"zhangsan", 20, "nan", "10086"};
 
-    //结构体.成员
-    // printf("%s %d %s %s\n", s.name, s.age, s.sex, s.tale);  //%s用于打印 字符串（char 数组或 char 指针）
+//     //结构体.成员
+//     // printf("%s %d %s %s\n", s.name, s.age, s.sex, s.tale);  //%s用于打印 字符串（char 数组或 char 指针）
 
-    print(&s);
-    return 0;
-}
+//     print(&s);
+//     return 0;
+// }
+
+//define 不是关键字，是预处理指令
+
+//-----------------------------------------------初阶c----------------------------------------
+
+//字符本质上也是整型
+// switch (整型表达式) {
+//     语句项：
+// }
+
+// case 整型常量表达式：
+//     语句；
+//分支中的break只会终止分支的代码
+
+
+//--------while循环---------
+//break 跳出循环
+//continue 跳过后面的代码，直接开始下一轮循环
