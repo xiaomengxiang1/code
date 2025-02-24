@@ -280,13 +280,97 @@
 
 //BMI计算
 
+// #include <stdio.h>
+// int main() {
+//     int weight = 0;
+//     int height = 0;
+//     printf("体重(公斤),身高(厘米):");
+//     scanf("%d %d",&weight, &height);
+//     double BMI = (weight / ((height/100.0) * (height/100.0)));
+//     printf("BMI = %.2lf",BMI);  
+//     return 0;
+// }
+
+//n的阶乘
+// #include <stdio.h>
+// int main() {
+//     int i = 0;
+//     int result = 1;
+//     int n = 1;
+//     scanf("%d",&n);
+//     for(i = 1; i <= n; i++) {
+//         result *= i;
+//     }
+//     printf("%d的阶乘是:%d", n, result);
+//     return 0;
+// }
+
+//计算1! + 2! +.....+10!
+// #include <stdio.h>
+// int main() {
+//     int i = 0;
+//     int result = 1;
+//     int n = 1;
+//     int sum = 0;
+//     scanf("%d",&n);
+//     for(i = 1; i <= n; i++) {
+//         result *= i;
+//         sum += result;
+//     }
+//     printf("%d的阶乘是:%d\n", n, result);
+//     printf("1! + 2! +.....+10!的值是:%d\n", sum);
+//     return 0;
+// }
+
+//有序数组中查找具体的数字n
+// #include <stdio.h>
+// int main() {
+//     int arr[] = {1,2,3,4,5,6,7,23,45,676};
+//     int n = 0;
+//     int sz = sizeof(arr)/sizeof(arr[0]);
+//     int i = 0;
+//     scanf("%d", &n);
+//     for(i = 0; i < sz; i++) {
+//         if (n == arr[i]) {
+//             printf("有%d这个数字\n",n);
+//             break;
+//         }
+//     }
+//     if (i == sz) {
+//         printf("没有找到数字%d\n",n);
+//     }
+//     return 0;
+// }
+
+//用二分法查找解决上个问题(有序数组)
 #include <stdio.h>
 int main() {
-    int weight = 0;
-    int height = 0;
-    printf("体重(公斤),身高(厘米):");
-    scanf("%d %d",&weight, &height);
-    double BMI = (weight / ((height/100.0) * (height/100.0)));
-    printf("BMI = %.2lf",BMI);  
+    int arr[] = {1,2,3,4,5,6,7,8,9,10};
+    int sz = sizeof(arr)/sizeof(arr[0]);
+
+    int left = 0;
+    int right = sz - 1;
+    
+    //查找n
+    int n = 0;
+    scanf("%d", &n);
+
+    while (left <= right) {
+        int mid = (left + right) / 2;
+        if (arr[mid] < n) {
+            left = mid + 1; 
+        }
+        else if (arr[mid] > n) {
+            right = mid - 1;
+        }
+        else {
+            printf("找到了,下标为%d", mid);
+            break;
+        }        
+    }
+    if (left > right) {
+        printf("找不到");
+    }
     return 0;
 }
+//时间复杂度为log2(n)
