@@ -343,34 +343,184 @@
 // }
 
 //用二分法查找解决上个问题(有序数组)
-#include <stdio.h>
-int main() {
-    int arr[] = {1,2,3,4,5,6,7,8,9,10};
-    int sz = sizeof(arr)/sizeof(arr[0]);
+// #include <stdio.h>
+// int main() {
+//     int arr[] = {1,2,3,4,5,6,7,8,9,10};
+//     int sz = sizeof(arr)/sizeof(arr[0]);
 
-    int left = 0;
-    int right = sz - 1;
+//     int left = 0;
+//     int right = sz - 1;
     
-    //查找n
-    int n = 0;
-    scanf("%d", &n);
+//     //查找n
+//     int n = 0;
+//     scanf("%d", &n);
 
-    while (left <= right) {
-        int mid = (left + right) / 2;
-        if (arr[mid] < n) {
-            left = mid + 1; 
+//     while (left <= right) {
+//         int mid = (left + right) / 2;
+//         if (arr[mid] < n) {
+//             left = mid + 1; 
+//         }
+//         else if (arr[mid] > n) {
+//             right = mid - 1;
+//         }
+//         else {
+//             printf("找到了,下标为%d", mid);
+//             break;
+//         }        
+//     }
+//     if (left > right) {
+//         printf("找不到");
+//     }
+//     return 0;
+// }
+//时间复杂度为log2(n)
+
+//多个字符从两端移动,向中间汇聚
+// #include <stdio.h>
+// #include <string.h>
+// #include <windows.h>
+// #include <stdlib.h>
+
+// int main() {
+//     char arr_1[] = "hello world";
+//     char arr_2[] = "###########";
+
+//     int left = 0;
+//     int right = strlen(arr_1) - 1;  //字符串长度,因为索引小1,所以减去1
+//     // int right = sizeof(arr_1) / sizeof(arr_1[0]) - 2;   //[....,\0]这里有算\0的长度所以多减一个1
+
+//     while (left <= right) {
+//         arr_2[left] = arr_1[left];
+//         arr_2[right] = arr_1[right];
+
+//         Sleep(1000);    //等待1000ms
+//         system("cls");  //system是一个库函数,可以执行系统命令
+        
+//         printf("%s\n",arr_2);
+//         left++;
+//         right--; 
+//     }
+//    return 0;
+// }
+
+//用户登入,最多登入三次机会
+// #include <stdio.h>
+
+// int main() {
+//     int i = 0;
+//     int password = 123456;
+//     int key = 0;
+//     while (i < 3) {
+//         printf("输入密码:");
+//         scanf("%d", &key);
+//         if (key == password) {
+//             printf("密码正确\n");
+//             break;
+//         }
+//         else {
+//             printf("密码错误\n");
+//         }
+//         i++;
+//     }
+//     return 0;
+// }
+
+//比较两个字符是否相等,不能用==,应该用一个库函数:strcmp
+//如果返回值是0,表示两个字符串相等
+// #include <stdio.h>
+// #include <string.h>  // 引入 string.h 以使用 strcmp
+// int main() {
+//     int i = 0;
+//     char password[20] = {0};
+//     //假设密码是abcdef
+//     for (i = 0; i < 3; i++) {
+//         printf("请输入密码>\n");
+//         scanf("%s", password);  // 数组本身表示地址,不用取地址符
+//         if (strcmp(password, "abcdef") == 0) {
+//             printf("密码正确\n");
+//             break;
+//         }
+//         else {
+//             printf("密码错误\n");
+//         }
+//     }
+//     if (i == 3) {
+//         printf("三次密码均输入错误,程序退出\n");
+//     }
+//     return 0; 
+// }
+
+//猜数字小游戏
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void menu() {
+    printf("                               \n");
+    printf("*******************************\n");
+    printf("*******   1. play    **********\n");
+    printf("*******   0. exit    **********\n");
+    printf("*******************************\n");
+    printf("                               \n");
+}
+
+//0~RAND_MAX
+void game() {
+    int guess = 0;
+    //1.生成随机数
+
+    // 0到100
+    int ret = rand()%100 + 1;   //生成随机数的函数
+    // printf("%d\n", ret);
+    //2.猜数字
+    
+    while (1) {
+
+        printf("请猜数字>\n");
+        scanf("%d", &guess);
+
+        if (guess < ret) {
+            printf("猜小了\n");
         }
-        else if (arr[mid] > n) {
-            right = mid - 1;
+        else if (guess > ret) {
+            printf("猜大了\n");
         }
         else {
-            printf("找到了,下标为%d", mid);
+            printf("猜对了\n");
             break;
-        }        
+        }  
     }
-    if (left > right) {
-        printf("找不到");
-    }
+  
+
+}
+
+int main() {
+    int input = 0;
+
+    //srand 函数需要一个 unsigned int 类型的种子
+    //所以需要将 time(NULL) 的结果强制转换为 unsigned int 类型
+    //这是为了确保类型匹配
+
+    //srand 是 C 标准库中的一个函数，用来初始化随机数生成器的种子
+    srand((unsigned int)time(NULL));
+
+    do {
+        menu();
+        printf("请选择\n");
+        scanf("%d", &input);
+        switch (input) {
+        case 1:
+            
+            game();
+            break;
+        case 0:
+            printf("退出游戏\n");
+            break;
+        default:
+            printf("选择错误,重新选择\n");
+            break;
+        }
+    } while (input);
     return 0;
 }
-//时间复杂度为log2(n)
+

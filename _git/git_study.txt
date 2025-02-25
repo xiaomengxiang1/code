@@ -7,4 +7,14 @@ git commit -m "日志信息" 文件名          提交到本地库
 git reflog                              查看历史记录
 git reset --hard 版本号                 版本穿梭
 
+git restore <filename>                  重置文件
+git restore --staged <filename>         恢复文件
+git rm <filename>                       删除文件
+git rm <filename> -f                    强制删除文件
+git mv from to                          移动文件 重命名文件
 
+git branch                              查看分支
+git branch <branch name>                创建新的分支
+git branch -d <branch name>             删除分支
+git switch <branch name>                切换分支
+git switch -c <branch name>                创建并切换分支
