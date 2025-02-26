@@ -1,4 +1,5 @@
-#忽略不需要git管理的文件
-#*.exe忽略所有以.exe结尾的文件
-.vscode
+# 忽略 .vscode 文件夹
+.vscode/
+
+# 忽略所有 .exe 文件
 *.exe

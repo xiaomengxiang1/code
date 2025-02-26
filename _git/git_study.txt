@@ -36,3 +36,10 @@ git branch -M main  修改分支的名字为main
 git push            将代码上传至服务器上
 git push -u origin main
 
+git rm -r --cached <file name>     删除本地git仓库里的文件,项目里的文件不会删除
+--cached 选项表示仅从 Git 仓库中移除文件，而不会删除本地文件
+
+git rm -r --cached *.exe
+这个命令会从 Git 仓库中移除所有 .exe 文件，但不会删除本地磁盘上的文件
+
+
