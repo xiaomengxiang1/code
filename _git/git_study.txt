@@ -1,3 +1,5 @@
+--------------git命令-------------
+
 git config --global user.name   用户名  设置用户签名
 git config --global user.email  邮箱    设置用户签名
 git init                                初始化本地库
@@ -17,4 +19,20 @@ git branch                              查看分支
 git branch <branch name>                创建新的分支
 git branch -d <branch name>             删除分支
 git switch <branch name>                切换分支
-git switch -c <branch name>                创建并切换分支
+git switch -c <branch name>             创建并切换分支
+
+git merge <branch name>                 合并分支
+
+变基(在要变基的分支下操作)
+git rebase <主分支>                     变基为主分支
+git switch <主分支>     切换为主分支
+git merge <变基的分支>  合并变基的分支
+git branch -d <变基的分支>    删除变基完的分支
+
+--------------远程库-------------
+将本地库上传github:
+git remote add <remote name> <url>  关联远程仓库
+git branch -M main  修改分支的名字为main
+git push            将代码上传至服务器上
+git push -u origin main
+
