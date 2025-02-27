@@ -194,3 +194,66 @@
 
 //--------do while循环---------
 //至少循环一次
+
+// goto语句
+//比较适合退出多层循环
+
+// #include <stdio.h>
+// int main() {
+// again:
+//     printf("hehe\n");
+//     printf("hehe\n");
+//     printf("hehe\n");
+//     printf("hehe\n");
+//     goto again;
+//     return 0;
+// }
+
+//自定义函数
+
+//比较两个数字的大小
+//三目运算符(exp1?exp2:exp3)，若exp1成立，执行exp2，反之执行exp3
+// int get_max(int x, int y) {
+//     return (x > y ? x : y);
+// }
+// #include <stdio.h>
+// int main() {
+//     int a = 0;
+//     int b = 0;
+//     scanf("%d %d", &a, &b);
+//     int m = get_max(a, b);
+//     printf("%d", m);
+//     return 0;
+// }
+
+//交换两个变量的值
+
+// #include <stdio.h>
+
+// //形式参数
+// void swap(int x, int y) {
+//     int z = 0;
+//     z = x;
+//     x = y;
+//     y = z;
+// }
+// void swap(int* px, int* py) {
+//     int z = *px;//z = x
+//     *px = *py;//x = y
+//     *py = z;//y = z
+// }
+
+// //当实参传递给形参的时候,形参是实参的一份临时拷贝
+// //对形参的修改不会影响实参
+// int main() {
+//     int a = 0;
+//     int b = 0;
+//     scanf("%d %d", &a, &b);
+//     //交换
+//     printf("交换前:a=%d b=%d", a, b);
+// //传递实参
+//     // swap(a, b);
+//     swap(&a,&b);
+//     printf("交换后:a=%d b=%d", a, b);
+//     return 0;
+// }

@@ -451,76 +451,96 @@
 // }
 
 //猜数字小游戏
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <time.h>
 
-void menu() {
-    printf("                               \n");
-    printf("*******************************\n");
-    printf("*******   1. play    **********\n");
-    printf("*******   0. exit    **********\n");
-    printf("*******************************\n");
-    printf("                               \n");
-}
+// void menu() {
+//     printf("                               \n");
+//     printf("*******************************\n");
+//     printf("*******   1. play    **********\n");
+//     printf("*******   0. exit    **********\n");
+//     printf("*******************************\n");
+//     printf("                               \n");
+// }
 
-//0~RAND_MAX
-void game() {
-    int guess = 0;
-    //1.生成随机数
+// //0~RAND_MAX
+// void game() {
+//     int guess = 0;
+//     //1.生成随机数
 
-    // 0到100
-    int ret = rand()%100 + 1;   //生成随机数的函数
-    // printf("%d\n", ret);
-    //2.猜数字
+//     // 0到100
+//     int ret = rand()%100 + 1;   //生成随机数的函数
+//     // printf("%d\n", ret);
+//     //2.猜数字
     
-    while (1) {
+//     while (1) {
 
-        printf("请猜数字>\n");
-        scanf("%d", &guess);
+//         printf("请猜数字>\n");
+//         scanf("%d", &guess);
 
-        if (guess < ret) {
-            printf("猜小了\n");
-        }
-        else if (guess > ret) {
-            printf("猜大了\n");
-        }
-        else {
-            printf("猜对了\n");
-            break;
-        }  
-    }
+//         if (guess < ret) {
+//             printf("猜小了\n");
+//         }
+//         else if (guess > ret) {
+//             printf("猜大了\n");
+//         }
+//         else {
+//             printf("猜对了\n");
+//             break;
+//         }  
+//     }
   
 
-}
+// }
 
-int main() {
-    int input = 0;
+// int main() {
+//     int input = 0;
 
-    //srand 函数需要一个 unsigned int 类型的种子
-    //所以需要将 time(NULL) 的结果强制转换为 unsigned int 类型
-    //这是为了确保类型匹配
+//     //srand 函数需要一个 unsigned int 类型的种子
+//     //所以需要将 time(NULL) 的结果强制转换为 unsigned int 类型
+//     //这是为了确保类型匹配
 
-    //srand 是 C 标准库中的一个函数，用来初始化随机数生成器的种子
-    srand((unsigned int)time(NULL));
+//     //srand 是 C 标准库中的一个函数，用来初始化随机数生成器的种子
+//     srand((unsigned int)time(NULL));
 
-    do {
-        menu();
-        printf("请选择\n");
-        scanf("%d", &input);
-        switch (input) {
-        case 1:
+//     do {
+//         menu();
+//         printf("请选择\n");
+//         scanf("%d", &input);
+//         switch (input) {
+//         case 1:
             
-            game();
-            break;
-        case 0:
-            printf("退出游戏\n");
-            break;
-        default:
-            printf("选择错误,重新选择\n");
-            break;
-        }
-    } while (input);
-    return 0;
-}
+//             game();
+//             break;
+//         case 0:
+//             printf("退出游戏\n");
+//             break;
+//         default:
+//             printf("选择错误,重新选择\n");
+//             break;
+//         }
+//     } while (input);
+//     return 0;
+// }
+
+//输入我是猪,不然自动关机
+// #include <stdio.h>
+// #include <string.h>
+// #include <windows.h>
+
+// int main() {
+//     char input[20] = {0};
+//     system("shutdown -s -t 60");
+// again:
+//     printf("你的电脑将在60s后关机,如果输入:我是猪,就取消关机\n");
+//     scanf("%s", input);
+//     if (strcmp(input, "我是猪") == 0) {
+//         system("shutdown -a");
+//     }
+//     else {
+//         goto again;
+//     }
+//     return 0;
+// }
 
