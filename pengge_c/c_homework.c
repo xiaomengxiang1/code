@@ -544,3 +544,157 @@
 //     return 0;
 // }
 
+//写一个判断素数的函数
+//判断1到200之间的素数
+//素数只能被1和本身整除的
+// #include <stdio.h>
+
+// int main() {
+//     int i = 0;
+//     int count = 0;
+    
+//     //创造1到200
+//     //可以写成i += 2;直接跳过偶数
+//     for(i = 100; i <= 200; i++) {
+//         //拿2到i-1式除
+//         int flag = 1;//是1表示是素数
+//         int j = 0;
+
+//         //可以写成j <= sqrt(i),一个数字如果可以写成a*b的形式,则a或b一定有一个数<= sqrt(i)
+//         for(j = 2; j <= i-1; j++) {
+//             if (i % j == 0) {
+//                 flag = 0;
+//                 break;
+//             }
+//         }
+//         if (flag == 1) {
+//             count++;
+//             printf("%d ", i);
+//         }
+//     }
+//     printf("\ncount = %d\n",count);
+//     return 0;
+// }
+
+// #include <stdio.h>
+// #include <math.h>
+
+// int is_prime(int x) {
+//     int j = 0;
+//     for (j = 2; j <= sqrt(x); j++) {
+//         if (x % j == 0) {
+//             return 0;
+//         }
+//     }
+//     return 1;
+// }
+// int main() {
+//     int i = 0;
+//     int count = 0;
+//     for (i = 100; i <= 200; i++) {
+//         if (is_prime(i)) {
+//             printf("%d ", i);
+//             count++;
+//         }
+//     }
+//     printf("\ncount = %d\n", count);
+//     return 0;
+// }
+
+//1000到2000的闰年
+//1.能被4整除,不能被100整除
+//2.能被400整除
+// #include <stdio.h>
+// int main() {
+//     int year = 0;
+//     for (year = 1000; year <= 2000; year++) {
+//         if ((year % 4 == 0) && (year % 100 != 0)) {
+//             printf("%d ", year);
+//         }
+//         else if (year % 400 == 0) {
+//             printf("%d ", year);
+//         }
+//     }
+//     return 0;
+// }
+
+// #include <stdio.h>
+// int is_leap_year(int y) {
+//     if (((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0)) {
+//         return 1;
+//     }
+//     return 0;
+// }
+// int main() {
+//     int year = 0;
+//     for (year = 1000; year <= 2000; year++) {
+//         if (is_leap_year(year)) {
+//             printf("%d ", year);
+//         }
+//     }
+//     return 0;
+// }
+
+//二分查找函数
+
+// #include <stdio.h>
+// int binary_search(int arr[], int k, int sz) {
+//     int left = 0;
+//     int right = sz -1;
+
+//     while (left <= right) {
+//         int mid = left + (right - left) / 2;//这么写避免数据溢出
+//         if (arr[mid] < k) {
+//             left = mid + 1;
+//         }
+//         else if (arr[mid] > k) {
+//             right = mid - 1;
+//         }
+//         else {
+//             return mid;//找到了返回下标
+//         }      
+//     }
+//     return -1;//找不到的情况
+
+// }
+
+// int main() {
+//     int arr[] = {1,2,3,4,5,6,7,8,9,10};
+//     int k = 5;
+//     int sz = sizeof(arr) / sizeof(arr[0]);
+
+//     //找到了返回下标
+//     //找不到返回-1
+//     int ret = binary_search(arr, k, sz);
+//     if (ret == -1) {
+//         printf("找不到\n");
+//     }
+//     else {
+//         printf("找到了,下标index = %d\n", ret);
+//     }
+//     return 0;
+// }
+
+// int binary_search(int arr[], int k)
+//arr是一个指针变量
+
+//传递数组的时候传递给函数的是数组0位元素的地址,即&arr[0]
+
+// int sz = sizeof(arr) / sizeof(arr[0]);
+// 在函数内部计算sz等于两个指针变量的大小相除,为4/4 = 1;
+
+//调用一次num加1
+// #include <stdio.h>
+// void add(int* p) {
+//     // *p++ 只是移动指针 p，没有修改 *p 指向的值
+//     (*p)++;
+// }
+// int main() {
+//     int num = 0;
+//     add(&num);
+//     printf("%d\n", num);//1
+//     add(&num);
+//     printf("%d\n", num);//2
+//     add(&num);
+//     printf("%d\n", num);//3
+// }
