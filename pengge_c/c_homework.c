@@ -698,3 +698,224 @@
 //     add(&num);
 //     printf("%d\n", num);//3
 // }
+
+//传入无符号整型,按顺序输出每一位,1234输出1 2 3 4
+//递归的实现
+
+// #include <stdio.h>
+// void print(unsigned int n) {
+
+//     if (n > 9) {
+//         print(n / 10);
+//     }
+//     printf("%u ", n % 10);
+// }
+// int main() {
+//     unsigned int num = 0;
+//     scanf("%u", &num);
+//     print(num);
+//     return 0;
+// }
+
+//编写函数不允许创建临时变量,求字符串的长度
+//模拟实现strlen函数
+// #include <stdio.h>
+// //此时str指向arr数组的a的地址
+// int my_strlen(char* str) {
+//     int count = 0;
+//     while (*str != '\0') {
+//         count++;
+//         // *str++,先使用*str再移动指针
+//         str++;
+//     }
+//     return count;
+// }
+// int main() {
+   
+//     char arr[] = "abc";//[a,b,c,\0]
+//     int len = my_strlen(arr);
+    
+//     // 这里传递的字符串参数相当于a的地址,和传递数组参数时一样
+//     // int len = my_strlen("abc");
+
+//     printf("%d\n", len);
+//     return 0;
+// }
+
+//递归求解
+//my_strlen("abc")
+//1 + my_strlen("bc")
+//1 + 1+ my_strlen("c")
+//1 + 1+ 1+ 0 my_strlen("")
+
+// #include <stdio.h>
+
+// int my_strlen(char* str) {
+
+//     // str 是指针，表示地址
+//     // *str 是指针指向的值，表示字符
+
+//     if (*str != '\0') {
+//         //利用上面char* str声明的指针变量str,使其移动至下一个字符
+//         // str++;
+//         return 1 + my_strlen(str + 1);
+//     }
+//     else {
+//         return 0;
+//     }
+// }
+// int main() {
+   
+//     char arr[] = "abc";//[a,b,c,\0]
+//     int len = my_strlen(arr);
+
+//     printf("%d\n", len);
+//     return 0;
+// }
+
+//n!
+// #include <stdio.h>
+
+//递归
+// int fac(int n) {
+//     if (n > 1) {
+//         n = n * fac(n - 1);
+//     }
+//     else {
+//         return 1;
+//     }
+//     return n;
+// }
+// int fac(int n) {
+//     if (n <= 1) {
+//         return 1;
+//     }
+//     else {
+//         return n * fac(n - 1);
+//     }
+// }
+
+//迭代
+// int fac(int n) {
+//     int i = 0;
+//     int ret = 1;
+//     for (i = 1; i <= n; i++) {
+//         ret *= i; 
+//     }
+//     return ret;
+// }
+
+// int main() {
+//     int n = 1;
+//     scanf("%d", &n);
+//     int ret = fac(n);
+//     printf("%d\n", ret);
+//     return 0;
+// }
+
+//第n个斐波那契数列
+//1 1 2 3 5 8 13 21
+
+//采用递归但是效率低下
+
+// int fib(int n) {
+//     if (n <= 2) {
+//         return 1;
+//     }
+//     else {
+//         return fib(n-1) + fib(n-2);
+//     }
+// }
+
+//迭代
+// int fib(int n) {
+//     int a = 1;
+//     int b = 1;
+//     int c = 0;
+//     while (n >= 3) {
+//         c = a + b;
+//         a = b;
+//         b = c;
+//         n--;
+//     }
+//     return c;
+// }
+
+// int main() {
+//     int n = 0;
+//     scanf("%d", &n);
+//     int ret = fib(n);
+//     printf("%d\n", ret);
+//     return 0;
+// }
+
+// 一只青蛙一次可以跳 1 级台阶 或 2 级台阶
+// 它跳上 n 级台阶的方式有多少种
+
+// 0级台阶说明已经在台上了f(0) = 1
+//1级台阶f(1) = 1
+//2级台阶f(1) = 2
+//n级台阶时,前一个台阶要么是上1格,要么是上2格
+//前一个台阶之前的跳法可以表示为f(n-1)或者f(n-2)
+// f(n) = f(n-1) + f(n-2)，相当于斐波那契数列
+// f(1) = 1，f(2) = 2
+//所以可以直接采用迭代,时间复杂度低
+
+// 汉诺塔问题	hanoi(n) = hanoi(n-1) + 1 + hanoi(n-1)
+//共A B C三个柱子
+//目标是移动到C柱子上
+//假设n个盘子需要移动hanoi(n)步完成
+//将n盘子上的n-1个盘子视为一个整体
+//现在将这n-1个盘子移动到B柱子上,其实步骤和移动到C柱子上是一样的只是换一个目标
+//移动的时候可以忽略最大的一个盘子,因为最大,谁都可以放在它的上面
+//所以n-1个盘子移动到B柱子上的步骤也就是hanoi(n-1)
+//现在可以将最大的盘子移动到C上面也就是1步
+//最后将n-1个盘子由B移动到C,同上的步骤,也就是hanoi(n-1)
+//所以递归表达式应该为hanoi(n) = hanoi(n-1) + 1 + hanoi(n-1)
+
+// #include <stdio.h>
+// int hanoi(int n) {
+//     if (n > 1) {
+//         return (2 * hanoi(n-1) + 1);
+//     }
+//     else {
+//         return 1;
+//     }
+// }
+// int main() {
+//     int n = 0;
+//     scanf("%d", &n);
+//     int ret = hanoi(n);
+//     printf("%d\n", ret);
+//     return 0;
+// }
+
+//三个整数从大到小输出
+// #include <stdio.h>
+// void swap(int* px, int* py) {
+//     int tem = *px;
+//     *px = *py;
+//     *py = tem;
+// }
+// int main() {
+//     int a = 0;
+//     int b = 0;
+//     int c = 0;
+//     //输入
+//     scanf("%d %d %d", &a, &b, &c);
+//     //最大的放在a里面
+//     if (a < b) {
+//         swap(&a, &b);
+//     }
+//     if (a < c) {
+//         swap(&a, &c);
+//     }
+//     //第二大的放b里
+//     if (b < c) {
+//         swap(&b, &c);
+//     }
+
+//     //输出
+//     printf("%d %d %d\n",a, b, c);
+//     return 0;
+// }
