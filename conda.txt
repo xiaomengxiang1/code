@@ -1,0 +1,24 @@
+创建一个新的虚拟环境
+conda create --prefix E:\python_virtual_environments\project_name python=3.10.6 
+检查环境
+conda env list
+切换环境
+conda activate myenv
+退出环境
+conda deactivate
+删除环境
+conda env remove -p 路径
+模块：
+查找模块
+conda search <package_name>
+下载模块
+conda install <package_name>
+查看已下载模块
+conda list
+更新模块
+conda update <package_name>
+删除模块
+conda remove <package_name>
+
+-i https://pypi.tuna.tsinghua.edu.cn/simple   			镜像源
+

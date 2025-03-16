@@ -317,4 +317,19 @@ zip [-r] 参数1 参数2...
 unzip [-d] 参数
 -d 解压路径
 
+-----------------shell脚本------------------
+文件头行指定shell脚本的解释器版本
+#!/bin/bash     指定为bash解释器
+#!/bin/zsh      指定为zsh解释器
+
+
+chmod a+x hello.sh
+chmod：更改文件权限的命令（change mode）
+a：代表所有用户（all，即u（文件所有者）、g（文件所属组）、o（其他用户））
++x：添加可执行权限（executable）
+hello.sh：目标文件，通常是一个 Shell 脚本
+
+执行脚本
+./hello.sh
+
 
