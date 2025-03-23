@@ -1,0 +1,51 @@
+----------------------------------conda指令------------------------
+创建一个新的虚拟环境
+conda create --prefix E:\python_virtual_environments\project_name python=3.10.6 
+检查环境
+conda env list
+切换环境
+conda activate myenv
+退出环境
+conda deactivate
+删除环境
+conda env remove -p 路径
+模块：
+查找模块
+conda search <package_name>
+下载模块
+conda install <package_name>
+查看已下载模块
+conda list
+更新模块
+conda update <package_name>
+删除模块
+conda remove <package_name>
+
+-i https://pypi.tuna.tsinghua.edu.cn/simple   			镜像源
+
+------------------------nvm管理nodejs版本--------------------------
+npm_mirror: https://npmmirror.com/mirrors/npm/
+nvm install available
+nvm install <version>        //安装指定版本的 Node.js。
+#例如，nvm install 16.20.0 将安装 Node.js 的 16.20.0 版本。
+ 
+nvm use <version>            //切换使用指定版本的 Node.js。
+#例如，nvm use 16.20.0 将设置当前会话中使用 Node.js 的 16.20.0 版本。
+ 
+nvm list                     //列出已安装的所有 Node.js 版本。
+#例如，nvm list 它将显示已安装的版本列表，并在当前使用的版本旁边加上一个箭头标记。
+ 
+nvm alias <name> <version>   //创建一个别名以便更方便地引用特定的 Node.js 版本。
+#例如，nvm alias default 16.20.0 将创建一个名为 "default" 的别名，指向 Node.js 的 16.20.0 版本。
+ 
+nvm uninstall <version>      //卸载指定的 Node.js 版本。
+#例如，nvm uninstall 16.20.0 将卸载 Node.js 的 16.20.0 版本。
+ 
+nvm current                  //显示当前正在使用的 Node.js 版本。
+#例如，nvm current 将显示正使用的V16.20.0 版本
+ 
+nvm use default              //切换到默认的 Node.js 版本（由 nvm alias 命令设置的别名）。
+#例如，nvm use default 将切换到刚刚设置default别名的16.20.0版本
+ 
+nvm exec <version> <command> //在指定版本的 Node.js 环境中执行特定的命令。
+#例如，nvm exec 16.20.0 node app.js 将使用 Node.js 的 16.20.0 版本来运行 app.js 文件。
