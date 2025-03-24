@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            position: absolute;
+            /* 脱离文档流   设置几个就有几层*/
+            left: 200px;
+            top: 200px;
+        }
+
+        .box2{
+            width: 400px;
+            height: 400px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="box1"></div>
+
+    <div class="box2"></div>
+
+</body>
+</html>

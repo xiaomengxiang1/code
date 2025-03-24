@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .box1{
+            width: 400px;
+            height: 400px;
+            background-color: aqua;
+        }
+
+        .box2{
+            /* 只显示有限的大小,取决于你的容器的大小 */
+            width: 400px;
+            height: 400px;
+            background-image: url("https://th.bing.com/th/id/OIP.t5R4UVLnG3Cjr9l6N3FouwHaHa?rs=1&pid=ImgDetMain");
+            /* 设置是否平铺,以及平铺的格式,按xy轴平铺等 */
+            background-repeat: no-repeat;
+            /* 设置图片的大小参数 */
+            /* contain的意思就是长宽都按比例放大，但是只要有长宽其中之一顶到盒子的边缘，另外一个没有就不会放大了 */
+            /* cover尽量充满容器 */
+            background-size: cover;
+            /* 设置容器开始时的渲染的图片的位置 */
+            /* background-position: ; */
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="box1"></div>
+
+    <div class="box2"></div>
+
+</body>
+</html>

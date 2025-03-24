@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 只对子代生效，子代的子代无效 */
+        div>p{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    
+    <div>
+        <p>11111111</p>
+        <ul>
+            <li>
+                <p>5555555</p>
+            </li>
+        </ul>
+    </div>
+
+</body>
+</html>
