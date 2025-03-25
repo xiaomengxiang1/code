@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // -------------查找字符-----------------
+        // var str = "liujunye";
+
+        // // 字符串长度
+        // console.log(str.length);
+        // // 字符索引查找
+        // console.log(str.charAt(0));
+        // console.log(str.charAt(str.length - 1));    //最后一个
+        // console.log(str.charAt(-1));    //返回空字符串
+
+        // -------------合并字符串-----------------
+        // 也可以直接相加字符串合并
+        // var str_1 = "hello";
+        // var str_2 = "world";
+        // var str_3 = "!"
+
+        // var str = str_1.concat(str_2);
+        // var str_ = str_1.concat(str_2, str_3);
+        // console.log(str);
+        // console.log(str_);
+
+        // var one = 1;
+        // var two = 2;
+        // var three = "3";
+
+        // // concat不管什么类型直接合并成字符串
+        // //加号遇到数字先运算 遇到字符串和字符串拼接
+        // console.log("".concat(one, two, three));    //123
+        // console.log(one + two + three);         //33    1先加2 然后转化为字符串和3相拼接
+        
+        // -------------截取一段字符串-----------------
+
+        var name = "liujunye";
+        console.log(name.substring(0, 2));
+
+        console.log(name.substring(0));     //第二个参数不写默认直接截取到最后
+
+        // 写负数默认为0
+        //两个参数,如果第一个大于第二个参数会自动调换参数的位置
+        
+    </script>
+
+</body>
+</html>
