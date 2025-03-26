@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // -------------数组的遍历-----------------
+        // let name = ["liu", "jun", "ye"];
+        // let n = 0;
+        // // in的作用是遍历对象（数组）的属性名（下标）并赋值给左边变量
+        // for (n in name) {
+        //     console.log(name[n]);
+        // }
+        
+
+        // -------------数组的静态方法-----------------
+        // let name = ["liu", "jun", "ye"];
+
+        // console.log(Array.isArray(name));   true为数组
+
+        // -------------数组元素的push pop的方法-----------------
+        // Push    尾部添加     改变原数组  返回新的数组的长度
+        // pop    删除     改变原数组  返回删除的元素
+
+        // let arr = ["hello"];
+        // let my_length = arr.push("world");
+        // console.log(arr);
+        // console.log(my_length);
+
+        // let del = arr.pop();
+        // console.log(arr);
+        // console.log(del);
+
+        // -------------数组元素shift unshift的方法-----------------
+        // shift   删除第一个元素  返回删除的元素  改变原数组
+        // unshift   添加到第一个位置  返回新数组的长度  改变原数组 可以添加多个元素
+
+        // let arr = ["hello", "world"];
+        // console.log(arr.shift())
+
+
+        // -------------数组元素join的方法-----------------
+        // 返回字符串
+        // let arr = [1,2,3,4];
+        // console.log(arr.join());    // 1,2,3,4
+        // console.log(arr.join("|")); //1|2|3|4
+
+        // let arr = ["hello", "world"];
+        // let result = arr.join(" ");
+
+        // console.log(result);
+
+        // // 如果分割规则为空字符串("")，则返回数组的成员是原字符串的每一个字符。
+        // console.log(result.split(" "));
+        
+
+        // -------------数组元素concat的方法    数组合并-----------------
+        // concat传入的数据不是数组类型的合并到尾部
+        // 可以传入多个参数
+        // 是数组就合并元素
+        
+        // let arr_1 = ["hello"];
+        // let arr_2 = ["world"];
+        // let result_1 = arr_1.concat(arr_2);
+        // let result_2 = arr_1.concat(11111);
+        // console.log(result_1);
+        // console.log(result_2);
+
+
+        // -------------数组元素reverse 颠倒-----------------
+        // 改变原来的数组
+        // let arr = [1,2,3,4];
+
+        // console.log(arr);   1,2,3,4
+        // arr.reverse()
+        // console.log(arr);   4,3,2,1
+
+        // 字符串反转显示
+
+        // let name = "liujunye";
+        // let arr = name.split("");
+
+        // console.log(name);
+        // console.log(arr);   //['l', 'i', 'u', 'j', 'u', 'n', 'y', 'e']
+        // console.log(arr.reverse());
+        // console.log(arr);   //['e', 'y', 'n', 'u', 'j', 'u', 'i', 'l']
+
+        // let new_name = arr.join("");
+        // console.log(new_name);  //eynujuil
+
+
+        // -------------数组元素查找-----------------
+        // 判断元素是否存在
+        // 返回元素第一次出现的位置索引
+        // 如果没有返回-1
+        // 第二个参数表示开始搜索的位置
+
+        // let arr = [1,2,3,4];
+
+        // console.log(arr.indexOf(3));    //返回下标
+        // console.log(arr.indexOf(9));
+
+
+
+        console.log(Date.now());
+    </script>
+
+</body>
+</html>

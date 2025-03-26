@@ -40,14 +40,40 @@
         
         // -------------截取一段字符串-----------------
 
-        var name = "liujunye";
-        console.log(name.substring(0, 2));
+        // var name = "liujunye";
+        // // console.log(name.substring(0, 2));      //li
 
-        console.log(name.substring(0));     //第二个参数不写默认直接截取到最后
+        // console.log(name.substring(0));     //第二个参数不写默认直接截取到最后
 
         // 写负数默认为0
         //两个参数,如果第一个大于第二个参数会自动调换参数的位置
+
+
+        // -------------字符串索引-----------------
+
+        // let name = "liujuye";
+        // alert(name.indexOf("e"));
+        // // 指定开始位置
+        // // alert(name.indexOf("e", 2));
+
+        // // 不存在返回-1
+        // alert(name.indexOf("k"));
         
+
+        // -------------_trim方法-----------------
+        // 去除两端的空格，制表符，换行符等
+        // let name = "\rliujunye \n";
+        // console.log(name.trim());        //liujunye
+
+        // -------------_split方法-----------------
+        // 返回数组
+        let name = "liu|jun|ye";
+        let result = name.split("|");
+
+        console.log(name);
+        console.log(result);
+        console.log(name.split(""));
+
     </script>
 
 </body>
