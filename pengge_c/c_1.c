@@ -316,3 +316,142 @@
 //     }
 //     return 0;
 // }
+
+// ％p，打印地址，后面加上取地址符号
+// #include <stdio.h>
+// int main() {
+//     int arr[3][4] = {1,2,3,4,2,3,4,5,4,5,6,7};
+//     int i = 0;
+//     for (i = 0; i < 3; i++) {
+//         int j = 0;
+//         for (j = 0; j < 4; j++) {
+//             printf("&arr[%d][%d] = %p\n", i, j, &arr[i][j]);
+//         }
+//     }
+//     return 0; 
+// }
+
+// &arr[0][0] = 000000751efff9f0
+// &arr[0][1] = 000000751efff9f4
+// &arr[0][2] = 000000751efff9f8
+// &arr[0][3] = 000000751efff9fc
+// &arr[1][0] = 000000751efffa00
+// &arr[1][1] = 000000751efffa04
+// &arr[1][2] = 000000751efffa08
+// &arr[1][3] = 000000751efffa0c
+// &arr[2][0] = 000000751efffa10
+// &arr[2][1] = 000000751efffa14
+// &arr[2][2] = 000000751efffa18
+// &arr[2][3] = 000000751efffa1c
+// 二维数组在内存中也是连续存放的
+
+
+// 数组越界访问
+// 其实arr就是指针，越界了就是指针往后走了，指向了数组后面的空间
+
+// 越界
+// #include <stdio.h>
+// int main() {
+//     int arr[3][4] = {1,2,3,4,5,6,7,8,9,10,11,12};
+//     int i = 0;
+//     for (i = 0; i < 3; i++) {
+//         int j = 0;
+//         for (j = 0; j <= 4; j++) {
+//             printf("%d ", arr[i][j]);
+//         }
+//     }
+//     return 0;
+// }
+// 1 2 3 4 5 5 6 7 8 9 9 10 11 12 -549163912
+
+
+
+// 数组的传参的两种形式
+// 1.数组
+// 传的是元素首地址,并不是创建一个数组的形参
+
+
+// 传给形参的是数组的头元素的地址，所以不能再定义的函数中计算实参数组的元素个数
+// void bubble_sort(int arr[], int sz) {
+//     //  总的排序次数
+//     // int sz = sizeof(arr) / sizeof(arr[0]); //不能直接在函数内部计算数组长度  这边是指针变量之间的计算
+//     int i = 0;
+//     for (i = 0; i < sz - 1; i++) {
+//         // 一趟排序几次 9个数两两比较要8次
+//         // 重头开始比较
+//         int j = 0;
+//         for (j = 0; j < sz - 1 - i; j++) {
+//             if (arr[j] > arr[j + 1]) {
+//                 //交换
+//                 int temp = arr[j];
+//                 arr[j] = arr[j + 1];
+//                 arr[j + 1] = temp;
+//             }
+//         }
+
+//     }
+// }
+
+// // 2.指针
+
+// #include <stdio.h>
+// int main() {
+//     //将数组改为升序
+//     //冒泡排序
+//     // 一趟排序将一个数放到位置上
+//     // n个数据排序n-1次
+//     int arr[] = {7,6,5,4,3,2,1};
+//     int sz = sizeof(arr) / sizeof(arr[0]);
+//     bubble_sort(arr, sz);
+
+//     int i = 0;
+//     for (i = 0; i < sz; i++) {
+//         printf("%d", arr[i]);
+//     }
+//     return 0;
+// }
+
+
+// 数组名
+// 数组名确实能表示首元素的地址
+// 有两个例外
+// 1.sizeof(arr)     这里表示整个数组
+// 2.&数组名      这里的数组名表示整个数组的地址，取出的是整个数组的地址
+
+// #include <stdio.h>
+// int main() {
+//     int arr[10] = {0};
+    
+//     printf("%p\n", arr);
+//     printf("%p\n", arr + 1);
+//     printf("--------------------------\n");
+//     printf("%p\n", &arr[0]);
+//     printf("%p\n", &arr[0] + 1);
+//     printf("--------------------------\n");
+//     printf("%p\n", &arr);
+    // printf("%p\n", &arr + 1);   //加1表示跳过当前整个数组
+// }    
+    // 0000006c213ffb10
+    // 0000006c213ffb14
+    // --------------------------
+    // 0000006c213ffb10
+    // 0000006c213ffb14
+    // --------------------------
+    // 0000006c213ffb10
+    // 0000006c213ffb38
+
+
+//二维数组    
+// int arr[3][4];
+// arr;
+//这里的arr表示的也是二维数组的首元素(首行，并不是[0][0])的地址
+#include <stdio.h>
+int main() {
+    int arr[3][4] = {0};
+    int sz_hang = sizeof(arr) / sizeof(arr[0]);
+    int sz_lie = sizeof(arr[0]) / sizeof(arr[0][0]);
+    int sz_zong = sizeof(arr) / sizeof(arr[0][0]);
+
+    printf("%d, %d, %d\n", sz_hang, sz_lie, sz_zong);
+    return 0;
+}
