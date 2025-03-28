@@ -8,7 +8,7 @@ void menu() {
 }
 
 void game() {
-
+    char ret = 0;
     char board[ROW][COL] = {0};
 
     //初始化棋盘的函数
@@ -17,20 +17,38 @@ void game() {
 
     //下棋
     while (1) {
+        
         PlayerMove(board, ROW, COL);
-        DisplayBoard(board, ROW, COL);
         //判断输赢
+        ret = Iswin(board, ROW, COL);
+        if (ret != 'c') {
+            break;
+        }
+        DisplayBoard(board, ROW, COL);
+        
         ComputerMove(board, ROW, COL);
-        DisplayBoard(board, ROW, COL);
+        ret = Iswin(board, ROW, COL);
         //判断输赢
-
+        if (ret != 'c') {
+            break;
+        }
+        DisplayBoard(board, ROW, COL);
     }
+    if (ret == '*') {
+        printf("玩家赢\n");
+    }
+    else if (ret == '#') {
+        printf("电脑赢\n");
+    }
+    else {
+        printf("平局\n");
+    }
+    DisplayBoard(board, ROW, COL);
 
 }
 
 
 int main() {
-
     srand((unsigned int)time(NULL));    //设置随机数的生成起点
 
     int input = 0;
@@ -52,6 +70,4 @@ int main() {
         }
     } while (input);
 
-
-
-}
+}char ret = 0;
