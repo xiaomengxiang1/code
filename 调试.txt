@@ -1,0 +1,12 @@
+
+创建task.json
+和launch.json
+
+miDebuggerPath指定调试程序的路径
+"miDebuggerPath": "E:\\msy64\\mingw64\\bin\\gdb.exe",
+
+调试对象启动控制台  
+"externalConsole": true,
+
+
+
