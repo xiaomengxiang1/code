@@ -339,3 +339,44 @@
 // 但是栈这个容器必须遵守一条规则：先入栈的数据后出栈（First In Last Out， FILO）
 
 // 栈总是向下增长（由高地址向低地址）的
+
+//const
+// #include <stdio.h>
+// int main() {
+//     const int num = 10;
+//     //const修饰指针变量
+//     //1. const放在*的左边
+//     //修饰的是*p指向的对象,不能通过p来改变,p本身的值可以改变
+//     // const int* p = &num;
+//     //*p = 20; //err
+
+//     //2. const放在*右边
+//     //p指向的对象可以通过p来改变,但是不能修改p本身的值
+//     //p = &n; //err
+//     //*p = 0; //right
+//     const int* p = &num;
+
+
+// }
+
+//my_strlen完整版
+// #include <stdio.h>
+// #include <assert.h>
+// //防止函数内部修改传入的参数
+// int my_strlen(const char* str) {
+//     int count = 0;
+
+//     //若str为空指针,即为0,则抛出错误
+//     assert(str);
+//     while (*str) {
+//         str++;
+//         count++;
+//     }
+//     return count;
+// }
+// int main() {
+
+//     char arr[] = "hello";
+//     printf("%d\n", my_strlen(arr));
+//     return 0;
+// }

@@ -433,15 +433,132 @@
 // }
 
 
-#include <stdio.h>
-int add(int x, int y) {
-    return x + y;
-}
+// #include <stdio.h>
+// int add(int x, int y) {
+//     return x + y;
+// }
 
+// int main() {
+//     int a = 10;
+//     int b = 20;
+//     char arr[] = "abcdef";
+//     int c = add(a, b);
+//     printf("%d\n", c);
+//     return 0;
+// }
+
+// #include <stdio.h>
+
+// void test2() {
+
+// }
+
+// void test1() {
+//     test2();
+// }
+
+// int main() {
+//     test1();
+//     return 0;
+// }
+
+//1! + 2! + ....+ n!
+// #include <stdio.h>
+// int main() {
+//     int n = 0;
+//     int i = 0;
+//     int num = 1;
+//     int sum = 0;
+//     scanf("%d", &n);
+//     for (i = 1; i <= n; i++) {
+//         num = num * i;
+//         sum += num;
+//     }
+//     printf("%d", sum);
+//     return 0;
+// }
+
+//死循环代码
+// #include <stdio.h>
+// int main() {
+//     int i = 0;
+//     int arr[10] = {1,2,3,4,5,6,7,8,9,10};
+
+//     for (i = 0; i <=12; i++) {
+//         arr[i] = 0;
+//         printf("hehe\n");
+//     }
+
+
+//     return 0;
+// }
+
+// #include <stdio.h>
+// void my_strcpy(char* dest, char* src) {
+//     while (*src != '\0') {
+//         *dest = *src;
+//         dest++;
+//         src++;
+//     }
+//     *dest = *src;
+// }
+
+// int main() {
+//     char arr_1[]  = "xxxxxxxxxxxxx";
+//     char arr_2[]  = "hello";
+//     my_strcpy(arr_1, arr_2);
+//     printf("%s\n", arr_1);
+//     return 0;
+// }
+
+//多组数据判断三角形形状
+// #include <stdio.h>
+// int main() {
+//     int a = 0;
+//     int b = 0;
+//     int c = 0;
+//     while (scanf("%d %d %d", &a, &b, &c) == 3) {
+//         if ((a + b > c) && (c > a - b)) {
+//             if ((a == b) && (b == c)) {
+//                 printf("等边三角形\n");
+//             }
+//             else if ((a == b) || (a == c) || (b ==c)) {
+//                 printf("等腰三角形\n");
+//             }
+//             else {
+//                 printf("普通三角形\n");
+//             }
+//         }
+//         else {
+//             printf("不是三角形\n");
+//         }
+//     }
+
+//     return 0;
+// }
+
+//打印数组内容用指针,不使用数组下标
+// #include <stdio.h>
+// void print(int* p, int sz) {
+//     int i = 0;
+//     for (i = 0; i < sz; i++) {
+//         printf("%d ", *p);
+//         p++;
+//     }
+// }
+// int main() {
+//     int arr[] = {1,2,3,4,5,6};
+//     int sz = sizeof(arr) / sizeof(arr[0]);
+//     print(arr, sz);
+
+//     return 0;
+// }
+
+//逆序字符串
+#include <stdio.h>
 int main() {
-    int a = 10;
-    int b = 20;
-    int c = add(a, b);
-    printf("%d\n", c);
+    char arr[10001];
+    //scanf("%s");  //无法接收含有空格的字符串
+    gets(arr);
     return 0;
 }
