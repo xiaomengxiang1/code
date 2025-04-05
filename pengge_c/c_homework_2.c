@@ -1,5 +1,5 @@
-//打印一个数的每一位数
-//递归(要求)
+// 打印一个数的每一位数
+// 递归(要求)
 // #include <stdio.h>
 
 // void func(int x) {
@@ -413,15 +413,35 @@
 
 // }
 
+////调试
+// #include <stdio.h>
+
+// int main() {
+
+//     int i = 0;
+//     int arr[10] = {0};
+//     //赋值
+//     for (i = 0; i < 10; i++) {
+//         arr[i] = i;
+//     }
+//     //打印
+//     for (i = 0; i < 10; i++) {
+//         printf("%d", i);
+//     }
+    
+//     return 0;
+// }
+
+
 #include <stdio.h>
+int add(int x, int y) {
+    return x + y;
+}
 
 int main() {
-    int i = 0;
-    for (i = 0; i < 10; i++) {
-        printf("%d", i);
-    }
-    
-    printf("\n按 Enter 键退出...");
-    getchar(); // 等待用户输入，防止窗口自动关闭
+    int a = 10;
+    int b = 20;
+    int c = add(a, b);
+    printf("%d\n", c);
     return 0;
 }
