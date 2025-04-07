@@ -555,10 +555,227 @@
 // }
 
 //逆序字符串
+// #include <stdio.h>
+// #include <string.h>
+// int main() {
+//     char arr[10001];
+//     //scanf("%s");  //无法接收含有空格的字符串
+//     gets(arr);
+//     int left = 0;
+//     int right = strlen(arr) - 1;
+//     while (left < right) {
+//         char temp = arr[left];
+//         arr[left] = arr[right];
+//         arr[right] = temp;
+
+//         left++;
+//         right--;
+//     }
+//     printf("%s\n", arr);
+//     return 0;
+// }
+
+// 求Sn = a + aa + aaa +...前五项的和
+// #include <stdio.h>
+// #include <math.h>
+// int main() {
+//     int a = 0;
+//     int n = 0;
+//     scanf("%d %d", &a, &n);
+//     int i = 0;
+//     int an = 0;
+//     int Sn = 0;
+//     for (i = 0; i < n; i++) {
+//         an += a * pow(10, i);
+//         //或者an = an * 10 + a
+//         Sn += an;
+//     }
+//     printf("%d\n", Sn);
+//     return 0;
+// }
+
+//0到10 0000之间的水仙花数
+// n位数,各个位的n次方相加为本身
+// #include <stdio.h>
+// #include <math.h>
+// int main() {
+//     int i = 0;
+//     for (i = 0; i <= 100000; i++) {
+//         //判断位数
+//         //注意不要改变了i的值
+//         int temp = i;
+//         int count = 1;    
+//         while (temp / 10) {
+//             temp = temp / 10;
+//             count++;
+//         }
+//         //得到每一位计算n次方
+//         temp = i;
+//         int sum = 0;
+//         while (temp) {
+//             sum += pow((temp % 10), count);
+//             temp = temp / 10;
+//         }
+//         if (sum == i) {
+//             printf("%d ", i);
+//         }
+
+//     }
+//     return 0;
+    
+// }
+
+//打印菱形
+// #include <stdio.h>
+// int main() {
+//     int line = 0;
+//     scanf("%d", &line);
+//     //上
+//     int i = 0;
+//     for (i = 0; i < line; i++) {
+//         //空格
+//         int j = 0;
+//         for (j = 0; j < line - 1 - i; j++) {
+//             printf(" ");
+//         }
+//         //*
+//         for (j = 0; j < 2 * i + 1; j++) {
+//             printf("*");
+//         }
+//         printf("\n");
+//     }
+
+//     // //下
+//     for (i = 0; i < line - 1; i++) {
+//         //空格
+//         int j = 0;
+//         for (j = 0; j <= i; j++) {
+//             printf(" ");
+//         }
+//         //*
+//         for (j = 0; j < 2 * (line - 1 - i) - 1; j++) {
+//             printf("*");
+//         }
+//         printf("\n");
+//     }
+// }
+
+
+//喝汽水，1瓶汽水1元，2个空瓶可以换一瓶汽水，给20元，可以多少汽水（编程实现）。
+// #include <stdio.h>
+// int main() {
+//     int money = 0;
+//     scanf("%d", &money);
+//     int juice = 1;
+//     int count = 0;
+//     int bottle = 0;
+//     //用钱全部买饮料
+//     count = money;
+//     //总的空瓶子
+//     bottle = count;
+//     //空瓶子换汽水
+//     while (bottle >= 2) {
+//         bottle = bottle - 2 + 1;
+//         count++;
+//     }
+//     printf("%d", count);
+//     return 0;
+// }
+
+
+// 正整数A和正整数B的最小公倍数是指能被A和B整除的最小的正整数值，设计一个算法，求输入A和B的最小公倍数。
+// 数据范围：1≤a，b≤100000
+
+//效率较低
+// #include <stdio.h>
+// int main() {
+
+//     int a = 0;
+//     int b = 0;
+//     scanf("%d %d", &a, &b);
+
+//     int m = (a > b? a : b);
+//     while (1) {
+//         if ((m % a == 0) && (m % b == 0)) {
+//             break;
+//         }
+//         m++;
+//     }
+//     printf("%d\n", m);
+//     return 0;
+// }
+
+
+// a * j  = b * i = m
+// 两个数的最大公约数 × 最小公倍数 = 它们的乘积
+// 辗转相除法，是指用于计算两个正整数a，b的最大公约数(a % b = c1 然后用b % c = c2重新赋值c=a%b,a=b,b=c)
+
+
+// #include <stdio.h>
+// //最大公约数
+// int gongyueshu(int a, int b) {
+//     int c = 0;
+//     while (a % b != 0) {
+//         c = a % b;
+//         a = b;
+//         b = c;
+//     }
+//     return c;
+// }
+// //最小公倍数
+// int gongbeishu(int a, int b) {
+//     return a / gongyueshu(a, b) * b; // 先除再乘防止溢出
+// }
+// int main() {
+
+//     int a = 0;
+//     int b = 0;
+//     scanf("%d %d", &a, &b);
+//     int ret = gongbeishu(a , b);
+//     printf("%d\n", ret);
+//     return 0;
+// }
+
+
+// 将一句话的单词进行倒置，标点不倒置。比如 I like beijing. 经过函数后变为：beijing. like I
+
 #include <stdio.h>
+#include <string.h>
+void reverse(char* left, char* right) {
+    while (left < right) {
+        char temp = *left;
+        *left = *right;
+        *right = temp;
+
+        left++;
+        right--;
+    }
+}
 int main() {
-    char arr[10001];
+
+    char arr[101] = {0};
+
     //scanf("%s");  //无法接收含有空格的字符串
     gets(arr);
+    //逆序整个字符串
+    int len = strlen(arr);
+    reverse(arr, arr + len - 1);
+
+    //逆序每一个单词
+    char* start = arr;
+
+    while (*start) {
+        char* end = start;
+        while (*end != ' ' && *end != '\0') {
+            end++;
+        }
+        reverse(start, end - 1);
+        if (*end)
+            end++;
+        start = end;
+    }
+    //输出
+    printf("%s\n", arr);
     return 0;
 }
+
