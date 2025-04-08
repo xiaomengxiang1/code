@@ -354,7 +354,7 @@
 //     //p指向的对象可以通过p来改变,但是不能修改p本身的值
 //     //p = &n; //err
 //     //*p = 0; //right
-//     const int* p = &num;
+//     int* const p = &num;
 
 
 // }
