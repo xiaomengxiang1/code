@@ -474,5 +474,225 @@
 // *什么   说明这个变量是指针
 // *什么[] 括号优先   说明这个是数组
 
+// 二级指针是专门用来存放一级指针变量的地址的
+// 二维数组传参的方法就是数组指针
 
 
+// -------------------函数指针-----------------
+// 数组指针 - 指向数组的指针
+// 函数指针 - 指向函数的指针
+
+// #include <stdio.h>
+// int add(int x, int y) {
+//     return x + y;
+// }
+// int main() {
+//     int arr[10] = {0};
+//     //&arr 取出数组的地址
+//     int (*p)[10] = &arr;
+
+//     printf("%p\n", add);
+//     printf("%p\n", &add);
+//     //对于函数来说 &函数名和函数名都是函数的地址
+
+//     int (*p_add)(int, int) = &add;
+//     int ret = (*p_add)(2, 3);
+//     //一样的,p_add代表地址相当于函数名
+//     // int ret = p_add(2, 3);
+//     printf("%d\n", ret);
+//     return 0;
+// }
+
+// []最高
+// ()第二
+
+// ( *( void (*)() )0 )()        
+
+//以上代码是一次函数调用,调用的是0作为地址的函数
+// void (*)() 函数指针类型
+// ( void (*)() )0      0是int 强制类型转换为 函数指针类型
+//解引用得到函数 并且进行函数传参调用(无参数)       (*(函数指针类型)0)()
+
+
+// void (* signal(int, void(*)(int) ))(int); 
+
+//以上代码是一次函数声明
+// signal  函数名
+// (int, void(*)(int) )    声明函数需要传递的参数是int 和 函数指针类型 这里并不是传参
+// void (*)(int);      剩下的是signal函数的返回类型        是函数指针类型
+
+
+// typedef void(* pf_t)(int);
+// int main() {
+//     void (* signal(int, void(*)(int) ))(int);
+//     //上下效果一样
+//     pf_t signal(int, pf_t);
+
+//     return 0;
+// }
+
+//函数指针的用途
+
+//计算器
+// #include <stdio.h>
+// void menu() {
+//     printf("******************************\n");
+//     printf("*****    1. 加  2. 减    *****\n");
+//     printf("*****    3. 乘  4. 除    *****\n");
+//     printf("********    0.退出    ********\n");
+//     printf("******************************\n");
+
+// }
+
+// int Add(int x, int y) {
+//     return x + y;
+// }
+
+// int Sub(int x, int y) {
+//     return x - y;
+// }
+
+// int Mul(int x, int y) {
+//     return x * y;
+// }
+
+// int Div(int x, int y) {
+//     return x / y;
+// }
+
+//回调函数
+// //计算
+// void calc(int (*p_func) (int, int)) {
+//     int x = 0;
+//     int y = 0;
+//     int ret = 0;
+
+//     printf("请输入两个数>");
+//     scanf("%d %d", &x, &y);
+
+//     ret = p_func(x, y);
+//     printf("%d\n", ret);
+
+// }
+// int main() {
+//     int input = 0;
+
+
+//     do {
+//         menu();
+//         printf("请选择>");
+//         scanf("%d", &input);
+        
+//         switch (input) {
+//             case 1:
+//                 calc(Add);
+//                 break;
+//             case 2:
+//                 calc(Sub);
+//                 break;
+//             case 3:
+//                 calc(Mul);
+//                 break;
+//             case 4:
+//                 calc(Div);
+//                 break;
+//             case 0:
+//                 printf("退出计算器\n");
+//                 break;
+//             default:
+//                 printf("选择错误");
+//                 break;
+//         }
+//     }while (input);
+
+//     return 0;
+// }
+
+
+// -------------------函数指针数组-----------------
+// #include <stdio.h>
+
+// int Add(int x, int y) {
+//     return x + y;
+// }
+
+// int Sub(int x, int y) {
+//     return x - y;
+// }
+
+// int Mul(int x, int y) {
+//     return x * y;
+// }
+
+// int Div(int x, int y) {
+//     return x / y;
+// }
+
+// int main() {
+//     //写法
+//     int (*arr[4])(int, int) = {Add, Sub, Mul, Div};
+
+//     int i = 0;
+//     int ret = 0;
+//     for (i = 0; i < 4; i++) {
+//         ret = arr[i](8, 4);
+//         printf("%d\n", ret);
+//     }
+//     return 0;
+// }
+
+
+// -------------------指向函数指针数组的指针-----------------
+    // 指向函数指针数组的指针是一个指针
+    // 指针指向一个数组，数组的元素都是函数指针
+
+// #include <stdio.h>
+// int main() {
+//     //函数指针数组
+//     int (*pf_arr[5])(int, int) = {0, Add, Sub, Mul, Div};
+
+//     // 指向函数指针数组的指针
+//     int (*(*p_pf_arr)[5]) (int, int) = &pf_arr;
+
+//     return 0;
+// }
+
+// -------------------回调函数----------------
+//冒泡排序
+
+#include <stdio.h>
+void bubble_sort(int arr[], int sz) {
+    int i = 0;
+    //总次数
+    for (i = 0; i < sz - 1; i++) {
+        int flag = 1; //假设数组排好序
+
+        //一趟排序
+        int j = 0;
+        for (j = 0; j < sz - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+
+                flag = 0; //有交换一次说明不是有序
+            }
+        }
+        if (flag == 1) {
+            break;
+        }
+    }
+}
+int main() {
+    int arr[] = {9,8,7,6,5,4,3,2,1,0};
+    int sz = sizeof(arr) / sizeof(arr[0]);
+
+    bubble_sort(arr, sz);
+
+    int i = 0;
+    for (i = 0; i < sz; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
