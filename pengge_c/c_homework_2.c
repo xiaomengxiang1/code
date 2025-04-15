@@ -739,43 +739,43 @@
 
 // 将一句话的单词进行倒置，标点不倒置。比如 I like beijing. 经过函数后变为：beijing. like I
 
-#include <stdio.h>
-#include <string.h>
-void reverse(char* left, char* right) {
-    while (left < right) {
-        char temp = *left;
-        *left = *right;
-        *right = temp;
+// #include <stdio.h>
+// #include <string.h>
+// void reverse(char* left, char* right) {
+//     while (left < right) {
+//         char temp = *left;
+//         *left = *right;
+//         *right = temp;
 
-        left++;
-        right--;
-    }
-}
-int main() {
+//         left++;
+//         right--;
+//     }
+// }
+// int main() {
 
-    char arr[101] = {0};
+//     char arr[101] = {0};
 
-    //scanf("%s");  //无法接收含有空格的字符串
-    gets(arr);
-    //逆序整个字符串
-    int len = strlen(arr);
-    reverse(arr, arr + len - 1);
+//     //scanf("%s");  //无法接收含有空格的字符串
+//     gets(arr);
+//     //逆序整个字符串
+//     int len = strlen(arr);
+//     reverse(arr, arr + len - 1);
 
-    //逆序每一个单词
-    char* start = arr;
+//     //逆序每一个单词
+//     char* start = arr;
 
-    while (*start) {
-        char* end = start;
-        while (*end != ' ' && *end != '\0') {
-            end++;
-        }
-        reverse(start, end - 1);
-        if (*end)
-            end++;
-        start = end;
-    }
-    //输出
-    printf("%s\n", arr);
-    return 0;
-}
+//     while (*start) {
+//         char* end = start;
+//         while (*end != ' ' && *end != '\0') {
+//             end++;
+//         }
+//         reverse(start, end - 1);
+//         if (*end)
+//             end++;
+//         start = end;
+//     }
+//     //输出
+//     printf("%s\n", arr);
+//     return 0;
+// }
 

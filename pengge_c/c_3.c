@@ -660,39 +660,55 @@
 // -------------------回调函数----------------
 //冒泡排序
 
-#include <stdio.h>
-void bubble_sort(int arr[], int sz) {
-    int i = 0;
-    //总次数
-    for (i = 0; i < sz - 1; i++) {
-        int flag = 1; //假设数组排好序
+// #include <stdio.h>
+// void bubble_sort(int arr[], int sz) {
+//     int i = 0;
+//     //总次数
+//     for (i = 0; i < sz - 1; i++) {
+//         int flag = 1; //假设数组排好序
 
-        //一趟排序
-        int j = 0;
-        for (j = 0; j < sz - 1 - i; j++) {
-            if (arr[j] > arr[j + 1]) {
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
+//         //一趟排序
+//         int j = 0;
+//         for (j = 0; j < sz - 1 - i; j++) {
+//             if (arr[j] > arr[j + 1]) {
+//                 int temp = arr[j];
+//                 arr[j] = arr[j + 1];
+//                 arr[j + 1] = temp;
 
-                flag = 0; //有交换一次说明不是有序
-            }
-        }
-        if (flag == 1) {
-            break;
-        }
-    }
-}
-int main() {
-    int arr[] = {9,8,7,6,5,4,3,2,1,0};
-    int sz = sizeof(arr) / sizeof(arr[0]);
+//                 flag = 0; //有交换一次说明不是有序
+//             }
+//         }
+//         if (flag == 1) {
+//             break;
+//         }
+//     }
+// }
+// int main() {
+//     int arr[] = {9,8,7,6,5,4,3,2,1,0};
+//     int sz = sizeof(arr) / sizeof(arr[0]);
 
-    bubble_sort(arr, sz);
+//     bubble_sort(arr, sz);
 
-    int i = 0;
-    for (i = 0; i < sz; i++) {
-        printf("%d ", arr[i]);
-    }
+//     int i = 0;
+//     for (i = 0; i < sz; i++) {
+//         printf("%d ", arr[i]);
+//     }
 
-    return 0;
-}
+//     return 0;
+// }
+
+
+// void*是无具体类型的指针,可以接受任意类型的地址
+// 不能解引用,也不能加减整数
+
+// void qsort(  void *base, 
+//              size_t num, 
+//              size_t size, 
+//              int (*compar)(const void *, const void *));
+
+// base	    要排序的数组指针
+// num	    数组中元素的个数
+// size	    每个元素的大小（用 sizeof 获取）
+// compar	比较函数，返回负数、0、正数，分别表示“前小于后”、“相等”、“前大于后”
+
+// 如果a与b的位置需要互换，则需要返回正值；若不需要互换，则返回非正值即可
