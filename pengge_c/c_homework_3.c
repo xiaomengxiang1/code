@@ -421,6 +421,7 @@
 // }
 
 // 教材p165 1,4,8,11,13,15
+// 习题1
 // #include <stdio.h>
 // #include <math.h>
 
@@ -472,17 +473,286 @@
 
 
 // 习题8
-#include <stdio.h>
-int main() {
-    int arr[3][4] = {1,2,3,4,2,3,4,5,3,4,5,6};
-    int i = 0;
-    for (i = 0; i < 3; i++) {
-        int j = 0;
-        for (j = 0; j < 4; j++) {
-            printf("%d ", arr[i][j]);
-        }
-        printf("\n");
-    }
+// #define ROW 3
+// #define COL 4
+// #include <stdio.h>
+// int main() {
+//     int arr[ROW][COL] = {{1,1,1,1},
+//                          {1,1,1,1},
+//                          {1,1,1,1}};
+//     //遍历行
+//     int i = 0; 
+//     int count = 0;
+//     for (i = 0; i < ROW; i++) {
 
-    return 0;
-}
+//          //找每一行最大的值
+//         int row_max = arr[i][0];
+//         int j = 0;
+//         for (j = 0; j < COL; j++) {
+//             if (arr[i][j] > row_max) {
+//                 row_max = arr[i][j];
+//             }
+//         }
+
+//         //遍历每一行为最大值的元素
+//         for (j = 0; j < COL; j++) {
+//             if (arr[i][j] == row_max) {
+
+//                 //判断是否为每一个列的最小值
+//                 int col_min = row_max;
+//                 int k = 0;
+//                 //假设为最小值
+//                 int flag = 1;
+//                 for (k = 0; k < ROW; k++) {
+//                     if (col_min > arr[k][j]) {
+//                         flag = 0;
+//                         break;
+//                     }
+//                 }
+//                 if (flag) {
+//                     printf("鞍点:arr[%d][%d] = %d\n", i, j, row_max);
+//                     count++;
+//                 }
+//             }
+//         }
+//     }
+//     if (count) {
+//         printf("鞍点有%d个\n", count);
+//     }
+//     else {
+//         printf("没有鞍点\n");
+//     }
+// // 1 2 3 4
+// // 2 3 4 5
+// // 3 4 5 6
+//     return 0;
+// }
+
+// 习题11
+// #include <stdio.h>
+// int main() {
+//     int row = 0;
+//     int col = 0;
+//     scanf("%d %d", &row, &col);
+
+//     int i = 0;
+//     for (i = 0; i < row; i++) {
+//         //空格
+//         int j = 0;
+//         for (j = 0; j < i; j++) {
+//             printf("   ");
+//         }
+
+//         //星号
+//         for (j = 0; j < col; j++) {
+//             printf("*  ");
+//         }
+//         printf("\n");
+//     } 
+//     return 0;
+// }
+
+
+// 习题13
+// #include <stdio.h>
+// void my_strcat(char* p1, char* p2) {
+//     while (*p1 != '\0') {
+//         p1++;
+//     }
+
+//     while (*p2 != '\0') {
+//         *p1 = *p2;
+//         p1++;
+//         p2++; 
+//     }
+
+// }
+// int main() {
+//     char str1[100] = "hello ";
+//     char str2[10] = "world";
+
+//     my_strcat(str1, str2);
+
+//     printf("%s\n", str1);
+//     return 0;
+// }
+
+
+// 习题15
+// #include <stdio.h>
+// void my_strcpy(char* p1, char* p2) {
+//     while (*p1 != '\0') {
+//         p1++;
+//     }
+//     while (*p2 != '\0') {
+//         *p1 = *p2;
+//         p1++;
+//         p2++; 
+//     }
+
+//     *p1 = '\0';
+// }
+
+// int main() {
+//     char str1[20] = "hello ";
+//     char str2[10] = {'a', 'b', 'c', '\0', 'x', 'y', 'z'};
+
+//     my_strcpy(str1, str2);
+
+//     printf("%s\n", str1);
+//     return 0;
+// }
+
+
+// 教材215,  2,5,7,11,17
+// 习题2
+// #include <stdio.h>
+// #include <math.h>
+// void func_1(int a, int b, int c, int deta) {
+//     double x_1 = (-b + sqrt(deta)) / (2 * a);
+//     double x_2 = (-b - sqrt(deta)) / (2 * a);
+//     printf("方程有两个不同的实数根：x1 = %lf, x2 = %lf\n", x_1, x_2);
+// }
+
+// void func_2(int a, int b, int c, int deta) {
+//     double x = -b / (2 * a);
+//     printf("方程有两个相等的实数根：x1 = x2 = %lf\n", x);
+// }
+// void func_3(int a, int b, int c, int deta) {
+//     double real = -b / (2 * a);
+//     double xu = (sqrt(-deta)) / (2 * a);
+//     printf("方程有两个复数根\n");
+//     printf("x1 = %lf + %lfi\n", real, xu);
+//     printf("x1 = %lf - %lfi\n", real, xu);
+// }
+
+// int main() {
+//     int a = 0;
+//     int b = 0;
+//     int c = 0;
+//     scanf("%d %d %d", &a, &b, &c);
+
+//     int deta = pow(b, 2) - (4 * a * c);
+//     if (deta > 0) {
+//         func_1(a,b,c,deta);
+//     }
+//     else if (deta == 0) {
+//         func_2(a,b,c,deta);
+//     }
+//     else {
+//         func_3(a,b,c,deta);
+//     }
+//     return 0;
+// }
+// 1 2 5
+
+// 习题5
+// #include <stdio.h>
+// void reverse_string(char* left) {
+//     char* right = left;
+//     //右边位置
+//     while (*right != '\0') {
+//         right++;
+//     }
+//     right--;
+//     while (left < right) {
+//         char temp = *left;
+//         *left = *right;
+//         *right = temp;
+
+//         left++;
+//         right--;
+//     }
+// }
+// int main() {
+//     char arr[20] = {0};
+//     scanf("%s", arr);
+
+//     printf("%s\n", arr);
+//     reverse_string(arr);
+//     printf("%s\n", arr);
+//     return 0;
+// }
+
+// 习题7
+// #include <stdio.h>
+// void copy(char* arr1, char* arr2) {
+//     while (*arr1 != '\0') {
+//         //元音字母复制,目标地址数组+1
+//         if (*arr1 == 'a' || *arr1 == 'e' || *arr1 == 'i' || *arr1 == 'o' || *arr1 == 'u') {
+//             *arr2 = *arr1;
+//             arr2++;
+//         }
+//         arr1++;
+//     }
+// }
+// int main() {
+//     char arr1[10] = "hello";
+//     char arr2[10] = {0};
+
+//     copy(arr1, arr2);
+//     printf("%s\n", arr2);
+//     return 0;
+// }
+
+// 习题11
+// #include <stdio.h>
+// void bubble_sort(int arr[], int sz) {
+//     //总趟数
+//     int i = 0;
+//     for (i = 0; i < sz - 1; i++) {
+//         int flag = 1;//假设已经有序
+//         //每一趟
+//         int j = 0;
+//         for (j = 0; j < sz -1 -i; j++) {
+//             if (arr[j] > arr[j + 1]) {
+//                 int temp = arr[j];
+//                 arr[j] = arr[j + 1];
+//                 arr[j + 1] = temp;
+
+//                 flag = 0;//有交换一次说明不是有序
+//             }
+//         }
+//         if (flag == 1) {
+//             break;
+//         }
+//     }
+// }
+// int main() {
+
+//     int arr[] = {9,8,7,6,5,4,3,2,1,0};
+//     int sz = sizeof(arr) / sizeof(arr[0]);
+//     int i = 0;
+//     for (i = 0 ;i < sz; i++) {
+//         printf("%d ", arr[i]);
+//     }
+//     printf("\n");
+
+//     bubble_sort(arr, sz);
+
+//     for (i = 0 ;i < sz; i++) {
+//         printf("%d ", arr[i]);
+//     }
+//     return 0;
+// }
+
+// 习题17
+// #include <stdio.h>
+// void func(int n, char arr[], int* pi) {
+//     if (n > 9) {
+//         func(n / 10, arr, pi);
+//     }
+
+//     arr[(*pi)++] = '0' + (n % 10);
+// }
+
+// int main() {
+//     int n = 0;
+//     scanf("%d", &n);
+
+//     char arr[10] = {0};
+//     int i = 0;
+//     func(n, arr, &i);
+//     printf("%s", arr);
+//     return 0;
+// }
