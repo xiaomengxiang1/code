@@ -346,7 +346,7 @@
 //strerror
 
 
-// memcpy   内存拷贝函数    拷贝任意类型
+// memcpy   内存拷贝函数    拷贝任意类型    不能处理重叠内存之间的数据拷贝
 // void * memcpy ( void * destination, const void * source, size_t num );
 // #include <stdio.h>
 // #include <string.h>
@@ -378,3 +378,82 @@
 //     int arr2[10] = {0};
 //     my_memcpy(arr2, arr1, 28);
 // }
+
+//使用memmove函数处理重叠内存之间的数据拷贝
+// void * memcpy ( void * destination, const void * source, size_t num );
+// #include <stdio.h>
+// #include <string.h>
+// #include <assert.h>
+// void* my_memmove(void* dest, const void* src, size_t num) {
+//     //dest的地址在src的前面 src从前向后拷贝
+//     //dest的地址在src的后面 src从后向前拷贝
+//     // 1 2 3 4 5 6 7 8 9 10
+//     // -------------------------------->
+//     // 低地址                      高地址
+//     assert(dest && src);
+//     void* ret = dest;
+//     if (dest < src) {
+//         //从前向后拷贝
+//         while (num--) {
+//             *((char*)dest) = *((char*)src);
+//             // void* 类型不能直接加减
+//             dest = (char*)dest + 1;
+//             src = (char*)src + 1;
+//         }
+//     }
+//     else {
+//         //从后向前拷贝
+//         while (num--) {
+
+//             *((char*)dest + num) = *((char*)src + num);
+//         }
+//     }
+//     return ret;
+// }
+
+// int main () {
+//     int arr1[] = {1,2,3,4,5,6,7,8,9,10};
+//     my_memmove(arr1, arr1 + 2, 20);
+
+//     int i = 0;
+//     for (i = 0; i < 10; i++) {
+//         printf("%d ", arr1[i]);
+//     }
+// }
+
+
+
+//内存比较函数  比价每一对字节的内容    大于返回正  小于返回负  相等返回0
+// int memcmp ( const void * ptr1, const void * ptr2, size_t num );
+// #include <stdio.h>
+// #include <string.h>
+// #include <assert.h>
+// int main() {
+//     int arr1[] = {1,2,3,4,5};//内存 //01 00 00 00 //02 00 00 00 //03 00 00 00
+//     int arr2[] = {1,3,2};//内存     //01 00 00 00 //03 00 00 00 //02 00 00 00
+//     int ret = memcmp(arr1, arr2, 12);
+//     printf("%d\n", ret);//-1    
+
+// }
+
+//内存设置函数
+// memset
+// void * memset ( void * ptr, int value, size_t num );
+// ptr
+// Pointer to the block of memory to fill.
+// value
+// Value to be set. The value is passed as an int, but the function fills the block of memory using the unsigned char conversion of this value.
+// num
+// Number of bytes to be set to the value.
+// size_t is an unsigned integral type.
+
+#include <stdio.h>
+#include <string.h>
+#include <assert.h>
+int main() {
+
+    char arr[] = "hello world";
+    memset(arr, 'x', 5);
+    printf("%s\n", arr);
+    return 0;
+}
