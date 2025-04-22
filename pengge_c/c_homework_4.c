@@ -197,3 +197,232 @@
 
 //     return 0;
 // }
+
+
+// 5位运动员参加了10米台跳水比赛，有人让他们预测比赛结果：
+// A选手说：B第二，我第三；
+// B选手说：我第二，E第四；
+// C选手说：我第一，D第二；
+// D选手说：C最后，我第三；
+// E选手说：我第四，A第一；
+// 比赛结束后，每位选手都说对了一半，请编程确定比赛的名次。
+// #include <stdio.h>
+// int main() {
+//     int a = 0;
+//     int b = 0;
+//     int c = 0;
+//     int d = 0;
+//     int e = 0;
+//     for (a = 1; a <= 5; a++) {
+//         for (b = 1; b <= 5; b++) {
+//             for (c = 1; c <= 5; c++) {
+//                 for (d = 1; d <= 5; d++) {
+//                     for (e = 1; e <= 5; e++) {
+
+//                         if (((b == 2) + (a == 3) == 1)
+//                          && ((b == 2) + (e == 4) == 1)
+//                          && ((c == 1) + (d == 2) == 1)
+//                          && ((e == 4) + (a == 1) == 1)) {
+
+//                             if (a * b * c * d * e == 120) {
+//                                 printf("a = %d b = %d c = %d d = %d e = %d", a, b, c, d, e);
+//                             }
+//                          }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+
+//     return 0;
+// }
+
+
+
+// 日本某地发生了一件谋杀案，警察通过排查确定杀人凶手必为4个嫌疑犯的一个。
+// 以下为4个嫌疑犯的供词：
+// A说：不是我。 
+// B说：是C。 
+// C说：是D。 
+// D说：C在胡说
+// 已知3个人说了真话，1个人说的是假话
+// #include <stdio.h>
+// int main() {
+//     int killer = 0;
+//     for (killer = 'a'; killer <= 'd'; killer++) {
+//         //判断
+//         if (((killer != 'a') + (killer == 'c') + (killer == 'd') + (killer != 'd')) == 3) {
+//             printf("%c ", killer);
+//         }
+//     }
+
+//     return 0;
+// }
+
+
+//打印杨辉三角
+//      1 
+//     1 1
+//    1 2 1
+//   1 3 3 1
+//  1 4 6 4 1
+
+// 将三角形移到左边 先简化步骤
+// 1
+// 1 1
+// 1 2 1
+// 1 3 3 1
+// 1 4 6 4 1
+// #define ROW 5
+// #define COL 5
+// #include <stdio.h>
+// int main() {
+
+//     int arr[ROW][COL] = {0};
+//     int i = 0;
+//     //行
+//     for (i = 0; i < ROW; i++) {
+//         //列
+//         int j = 0;
+//         for (j = 0; j <= i; j++) {
+//             if (j == 0) {
+//                 arr[i][j] = 1;
+//             }
+//             if (i == j) {
+//                 arr[i][j] = 1;
+//             }
+//             if ((j != 0) && (i != j)) {
+//                 arr[i][j] = arr[i - 1][j - 1] + arr[i - 1][j];
+//             }
+//         }
+//     }
+
+//     i = 0;
+//     int j = 0;
+//     for (i = 0; i < ROW; i++) {
+//         //空格
+//         for (j = 0; j < COL - 1 - i; j++) {
+//             printf(" ");
+//         }
+//         //数字
+//         for (j = 0; j <= i; j++) {
+//             printf("%d ", arr[i][j]);
+//         }
+//         printf("\n");
+//     }
+//     return 0;
+// }
+
+// 题目名称：
+// 字符串左旋 
+// 题目内容：
+// 实现一个函数，可以左旋字符串中的k个字符。例如：
+// ABCD左旋一个字符得到BCDA
+// ABCD左旋两个字符得到CDAB
+
+//sizeof 有算上\0
+
+//法1
+// #include <stdio.h>
+// void levorotation(int k, char* p_arr, int sz) {
+//     char* p_arr_right = p_arr + sz - 1 - k;
+//     while (k--) {
+//         char temp = *p_arr;
+//         *p_arr = *p_arr_right;
+//         *p_arr_right = temp;
+
+//         p_arr++;
+//         p_arr_right++;
+//     }
+// }
+// int main() {
+//     int k = 0;
+//     scanf("%d", &k);
+//     char arr[] = "hello world";
+//     int sz = sizeof(arr) / sizeof(arr[0]);
+
+//     levorotation(k, arr, sz);
+
+//     printf("%s\n", arr);
+
+//     return 0;
+// }
+
+//法2
+// #include <stdio.h>
+// #include <string.h>
+// void levorotation(int k, char arr[]) {
+//     int i = 0;
+//     int len = strlen(arr);
+//     for (i = 0; i < k; i++) {
+//         //往后挪一个字符
+//         char temp = arr[0];
+//         int j = 0;
+//         //整体往前
+//         // abcdef
+//         // 012345
+//         // len = 6
+//         for (j = 0; j < len - 1; j++) {
+//             arr[j] = arr[j + 1];
+//         }
+//         arr[len - 1] = temp;
+//     }
+// }
+// int main() {
+//     int k = 0;
+//     scanf("%d", &k);
+//     char arr[] = "abcdef";
+
+//     levorotation(k, arr);
+
+//     printf("%s\n", arr);
+
+//     return 0;
+// }
+
+//法3
+#include <stdio.h>
+#include <string.h>
+#include <assert.h>
+//分开逆序 分成两个部分
+// a b c d e f
+// a b | c d e f
+//两个部分分别逆序
+// b a | f e d c
+//整体再次逆序
+// c d e f a b
+void reserve(char* left, char* right) {
+    assert(left && right);
+    while (left < right) {
+        char tmp = *left;
+        *left = *right;
+        *right = tmp;
+    
+        left++;
+        right--;
+    }
+
+}
+
+void levorotation(int k, char* arr) {
+    int len = strlen(arr);
+    //翻转len个数据相当于没有翻转 所以可以取出余数
+    k %= len;
+    reserve(arr, arr + k - 1);//左边
+    reserve(arr + k, arr + len - 1);//右边
+    reserve(arr, arr + len - 1);//整
+}
+
+int main() {
+    int k = 0;
+    scanf("%d", &k);
+    char arr[] = "abcdef";
+
+    levorotation(k, arr);
+
+    printf("%s\n", arr);
+
+    return 0;
+}
+
+

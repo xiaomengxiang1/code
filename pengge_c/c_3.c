@@ -482,6 +482,25 @@
 // 数组指针 - 指向数组的指针
 // 函数指针 - 指向函数的指针
 
+// 在大多数情况下，函数指针赋值时加不加 & 符号都可以，
+// 因为函数名本身就可以隐式转换为函数的地址（指针）
+
+// #include <stdio.h>
+
+// void hello() {
+//     printf("Hello!\n");
+// }
+
+// int main() {
+//     void (*p1)() = hello;   // 不加 &，OK
+//     void (*p2)() = &hello;  // 加 &，也 OK
+
+//     p1();
+//     p2();
+//     return 0;
+// }
+
+
 // #include <stdio.h>
 // int add(int x, int y) {
 //     return x + y;
