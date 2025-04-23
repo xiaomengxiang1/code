@@ -381,48 +381,261 @@
 // }
 
 //法3
-#include <stdio.h>
-#include <string.h>
-#include <assert.h>
-//分开逆序 分成两个部分
-// a b c d e f
-// a b | c d e f
-//两个部分分别逆序
-// b a | f e d c
-//整体再次逆序
-// c d e f a b
-void reserve(char* left, char* right) {
-    assert(left && right);
-    while (left < right) {
-        char tmp = *left;
-        *left = *right;
-        *right = tmp;
+// #include <stdio.h>
+// #include <string.h>
+// #include <assert.h>
+// //分开逆序 分成两个部分
+// // a b c d e f
+// // a b | c d e f
+// //两个部分分别逆序
+// // b a | f e d c
+// //整体再次逆序
+// // c d e f a b
+// void reserve(char* left, char* right) {
+//     assert(left && right);
+//     while (left < right) {
+//         char tmp = *left;
+//         *left = *right;
+//         *right = tmp;
     
-        left++;
-        right--;
-    }
+//         left++;
+//         right--;
+//     }
 
-}
+// }
 
-void levorotation(int k, char* arr) {
-    int len = strlen(arr);
-    //翻转len个数据相当于没有翻转 所以可以取出余数
-    k %= len;
-    reserve(arr, arr + k - 1);//左边
-    reserve(arr + k, arr + len - 1);//右边
-    reserve(arr, arr + len - 1);//整
-}
+// void levorotation(int k, char* arr) {
+//     int len = strlen(arr);
+//     //翻转len个数据相当于没有翻转 所以可以取出余数
+//     k %= len;
+//     reserve(arr, arr + k - 1);//左边
+//     reserve(arr + k, arr + len - 1);//右边
+//     reserve(arr, arr + len - 1);//整
+// }
 
-int main() {
-    int k = 0;
-    scanf("%d", &k);
-    char arr[] = "abcdef";
+// int main() {
+//     int k = 0;
+//     scanf("%d", &k);
+//     char arr[] = "abcdef";
 
-    levorotation(k, arr);
+//     levorotation(k, arr);
 
-    printf("%s\n", arr);
+//     printf("%s\n", arr);
 
-    return 0;
-}
+//     return 0;
+// }
 
+// 杨氏矩阵
+// 有一个数字矩阵，矩阵的每行从左到右是递增的，
+// 矩阵从上到下是递增的，请编写程序在这样的矩阵中查找某个数字是否存在。
+// 要求：时间复杂度小于O（N）；
+
+//法1   二分查找
+// #include <stdio.h>
+// int main() {
+//     int arr[5][5] = {{0,1,2,3,4},{1,2,3,4,5},{2,3,4,5,6},{3,4,5,6,7,},{4,5,6,7,8}};
+//     int k = 40;
+//     int flag = 0;
+
+//     int i = 0;
+//     //每行
+//     for (i = 0; i < 4; i++) {
+//         //每行进行二分查找
+//         int right = sizeof(arr[0]) / sizeof(arr[0][0]) - 1;//这里要取下标的范围
+//         int left = 0;
+
+//         while (left <= right) {
+
+//             int mid = (left + right) / 2;
+
+//             if (arr[i][mid] == k) {
+//                 flag = 1;
+//                 break;
+//             }
+//             else if (arr[i][mid] > k) {
+//                 right = mid - 1;
+//             }
+//             else {
+//                 left = mid + 1;
+//             }
+//         }
+//         if (flag) break; 
+//     }
+//     if (flag) {
+//         printf("有k这个数字\n");
+//     }
+//     else {
+//         printf("没有k这个数字\n");
+//     }
+//     return 0;
+// }
+
+
+//法二
+// 1 2 3
+// 4 5 6
+// 7 8 9
+//比3大 可以去掉第一行
+//比3小 可以去掉最后一列
+
+//返回 1 或 -1 没有返回坐标
+// #include <stdio.h>
+// int find_num(int arr[5][5], int r, int c, int k) {
+//     int x = 0;
+//     int y = c - 1;
+//     while (x <= r - 1 && y >= 0)
+//         if (k > arr[x][y]) {
+//             x++;
+//         }
+//         else if (k < arr[x][y]) {
+//             y--;
+//         }
+//         else {
+//             return 1;
+//         }
+//     return -1;
+// }
+// int main() {
+//     int arr[5][5] = {{0,1,2,3,4},{1,2,3,4,5},{2,3,4,5,6},{3,4,5,6,7,},{4,5,6,7,8}};
+//     int k = 40;
+//     int ret = find_num(arr, 5, 5, k);
+//     printf("%d\n", ret);
+//     return 0;
+// }
+
+
+//返回坐标
+// #include <stdio.h>
+
+// struct Point {
+//     int x;
+//     int y;
+// };
+
+// struct Point find_num(int arr[5][5], int r, int c, int k) {
+//     int x = 0;
+//     int y = c - 1;
+//     struct Point p = {-1, -1};
+//     while (x <= r - 1 && y >= 0)
+//         if (k > arr[x][y]) {
+//             x++;
+//         }
+//         else if (k < arr[x][y]) {
+//             y--;
+//         }
+//         else {
+//             p.x = x;
+//             p.y = y;
+//             return p;
+//         }
+//     return p;
+// }
+// int main() {
+//     int arr[5][5] = {{0,1,2,3,4},{1,2,3,4,5},{2,3,4,5,6},{3,4,5,6,7,},{4,5,6,7,8}};
+//     int k = 2;
+//     struct Point ret = find_num(arr, 5, 5, k);
+//     printf("%d %d\n", ret.x, ret.y);
+//     return 0;
+// }
+
+
+
+// 字符串旋转结果 题目内容：
+
+// 写一个函数，判断一个字符串是否为另外一个字符串旋转之后的字符串。
+
+// 例如：给定s1=AABCD和s2=BCDAA,返回1
+// 给定s1=abcd和s2=ACBD,返回0 
+
+// AABCD左旋一个字符得到ABCDA
+// AABCD
+// ABCDA
+// AABCD左旋两个字符得到BCDAA 
+// AABCD右旋一个字符得到DAABC 
+// AABCD
+// DAABC 
+
+//err
+// #include <stdio.h>
+// #include <string.h>
+// int is_reserve(char* s1, char* s2, int len) {
+//     char* p1 = s1;
+//     char* p2 = s2;
+//     //记录相同字母的地址
+//     //第一个字符串的指针移动
+//     //第二个字符串的指针不动
+//     while (*p2 != *p1) {
+//         if (*p1 == '\0') {
+//             return 0;
+//         }
+//         p1++;
+//     }
+//     //遍历字符len次,遇到'\0'跳过'\0',并且从头开始,核对每一个元素
+//     //假设每个核对都一样
+//     int flag = 1;
+//     int i = 0;
+//     for (i = 0; i < len; i++) {
+//         if (*p1 == '\0') {
+//             p1 = s1;
+//         }
+//         if (*p1 != *p2) {
+//             //有一个不一样返回0
+//             flag = 0;
+//             break;
+//         }
+//         p1++;
+//         p2++;
+//     }
+//     return flag;
+// }
+
+// int main() {
+//     char s1[] = "AABCD";
+//     char s2[] = "DAABC";
+//     int len = strlen(s1);
+
+
+//     if (is_reserve(s1, s2, len)) {
+//         printf("是");
+//     }
+//     else {
+//         printf("否");
+//     }
+//     return 0;
+// }
+
+
+// gpt法
+// 如果 s2 是 s1 的旋转结果，那么一定是 s1 + s1 的子串。
+// s1 = AABCD  
+// s2 = BCDAA  
+
+// s1 + s1 = AABCD AABCD  
+//          BCDAA 是其中的一个子串
+
+// #include <stdio.h>
+// #include <string.h>
+
+// int is_rotate(const char* s1, const char* s2) {
+//     if (strlen(s1) != strlen(s2)) return 0;
+
+//     char tmp[201] = {0};  // 2倍长度+1，为了防止越界
+//     strcpy(tmp, s1);
+//     strcat(tmp, s1); // 拼接成 s1 + s1
+
+//     return strstr(tmp, s2) != NULL; // 如果s2是tmp的子串，说明是旋转字符串
+// }
+
+// int main() {
+//     char s1[101] = "AABCD";
+//     char s2[101] = "DAABC";
+
+//     if (is_rotate(s1, s2)) {
+//         printf("是\n");
+//     } else {
+//         printf("否\n");
+//     }
+
+//     return 0;
+// }
 
