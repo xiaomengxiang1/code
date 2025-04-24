@@ -447,13 +447,36 @@
 // Number of bytes to be set to the value.
 // size_t is an unsigned integral type.
 
-#include <stdio.h>
-#include <string.h>
-#include <assert.h>
-int main() {
+// #include <stdio.h>
+// #include <string.h>
+// #include <assert.h>
+// int main() {
 
-    char arr[] = "hello world";
-    memset(arr, 'x', 5);
-    printf("%s\n", arr);
-    return 0;
-}
+//     char arr[] = "hello world";
+//     memset(arr, 'x', 5);
+//     printf("%s\n", arr);
+//     return 0;
+// }
+
+
+// ---------------------------自定义类型-----------------------
+
+
+// ----------------结构体类型-----------
+// struct Stu {
+//     int age;
+//     char name[20];
+// } s1, s2;//全局变量
+
+// int main() {
+
+//     struct Stu s3;//局部变量
+//     return 0;
+// }
+
+//匿名结构体类型
+//一次性使用
+// struct {
+//     int age;
+//     char name[20];
+// } s1;

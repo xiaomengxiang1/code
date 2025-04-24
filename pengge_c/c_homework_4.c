@@ -639,3 +639,188 @@
 //     return 0;
 // }
 
+
+// 描述
+// KiKi有一个矩阵，他想知道转置后的矩阵（将矩阵的行列互换得到的新矩阵称为转置矩阵），请编程帮他解答。
+// 输入描述：
+// 第一行包含两个整数n和m，表示一个矩阵包含n行m列，用空格分隔。(1<= n <= 10,1<= m <= 10)
+// 从2到n+1行，每行输入m个整数（范围—2^31~2^31—1），用空格分隔，共输入n*m个数，表示第一个矩阵中的元素。
+// 输出描述：
+// 输出m行n列，为矩阵转置后的结果。每个数后面有一个空格。
+// 1 2 3 
+// 4 5 6
+
+// 1 4
+// 2 5
+// 3 6
+
+// #include <stdio.h>
+// int main() {
+//     int n = 0;
+//     int m = 0;
+//     scanf("%d %d", &n, &m);
+//     //int arr[n][m]; // c99中的边长数组
+//     int arr[10][10] = {0};
+//     int i = 0;
+//     int j = 0;
+//     //输入数据
+//     for (i = 0; i < n; i++) {
+//         for (j = 0; j < m; j++) {
+//             scanf("%d", &arr[i][j]);
+//         }
+//     }
+
+//     //输出
+//     for (i = 0; i < m; i++) {
+//         for (j = 0; j < n; j++) {
+//             printf("%d ", arr[j][i]);
+//         }
+//         printf("\n");
+//     }
+//     return 0;
+// }
+
+
+// 描述
+// KiKi想知道一个n阶方矩是否为上三角矩阵，请帮他编程判定。上三角矩阵即主对角线以下的元素都为0的矩阵，
+// 主对角线为从矩阵的左上角至右下角的连线。
+// 输入描述：
+// 第一行包含一个整数n，表示一个方阵包含n行n列，用空格分隔。（1≤n≤10）
+// 从2到n+1行，每行输入n个整数（范围—2^31~2^31—1），用空格分隔，共输入n*n个数。
+// 输出描述：
+// 一行，如果输入方阵是上三角矩阵输出“YES”并换行，否则输出“NO”并换行。
+// #include <stdio.h>
+// int main() {
+//     int n = 0;
+//     scanf("%d", &n);
+//     int arr[n][n];
+//     int i = 0;
+//     int j = 0;
+//     //输入数据
+//     for (i = 0; i < n; i++) {
+//         for (j = 0; j < n; j++) {
+//             scanf("%d", &arr[i][j]);
+//         }
+//     }
+//     //判断
+//     //假设都是0
+//     int flag = 1;
+//     //从第一列对角线以下开始列举  然后第二列  第三列
+//     for (i = 1; i < n; i++) {
+//         for (j = 0; j < i; j++) {
+//             if (arr[i][j] != 0) {
+//                 flag = 0;
+//             }
+//         }
+//         if (flag == 0) {
+//             break;
+//         }
+//     }
+//     if (flag) {
+//         printf("yes\n");
+//     }
+//     else {
+//         printf("no\n");
+//     }
+//     return 0;
+// }
+
+
+// 描述
+// 输入一个整数序列，判断是否是有序序列，有序，指序列中的整数从小到大排序或者从大到小排序（相同元素也视为有序）
+// 数据范围：3<= n <= 50序列中的值都满足1≤val≤100输入描述：
+// 第一行输入一个整数N（3≤N≤50）。
+// 第二行输入N个整数，用空格分隔N个整数。
+// 输出描述：
+// 输出为一行，如果序列有序输出sorted，否则输出unsorted。
+//法1
+// #include <stdio.h>
+// int main() {
+//     int n = 0;
+//     scanf("%d", &n);
+//     int arr[n];
+//     int i = 0;
+//     for (i = 0; i < n; i++) {
+//         scanf("%d", &arr[i]);
+//     }
+
+//     int left = 0;
+//     int right = n - 1;
+//     int flag = 1;//假设有序
+//     //前面比后面大
+//     if (arr[left] > arr[right]) {
+//         while (left < right) {
+//             if (arr[left] < arr[right]) {
+//                 flag = 0;
+//                 break;
+//             }
+
+//             left++;
+//             right--;
+//         }
+//     }
+//     //后面比前面大
+//     else if (arr[left] < arr[right]) {
+//         while (left < right) {
+//             if (arr[left] > arr[right]) {
+//                 flag = 0;
+//                 break;
+//             }
+
+//             left++;
+//             right--;
+//         }
+//     }
+//     //一样大
+//     else {
+//         while (left < right) {
+//             if (arr[left] != arr[right]) {
+//                 flag = 0;
+//                 break;
+//             }
+
+//             left++;
+//             right--;
+//         }
+//     }
+//     if (flag) {
+//         printf("sorted\n");
+//     }
+//     else {
+//         printf("unsorted");
+//     }
+
+//     return 0;
+// }
+
+
+//法2
+// #include <stdio.h>
+// int main() {
+//     int n = 0;
+//     scanf("%d", &n);
+//     int arr[n];
+//     int i = 0;
+//     int flag1 = 1;//升序
+//     int flag2 = 1;//降序
+//     for (i = 0; i < n; i++) {
+//         scanf("%d", &arr[i]);
+
+//         if (i > 0) {
+//             if (arr[i] > arr[i - 1]) {
+//                 flag1 = 0;
+//             }
+//             if (arr[i] < arr[i - 1]) {
+//                 flag2 = 0;
+//             }
+//         }
+//     }
+
+//     if (flag1 || flag2) {
+//         printf("sorted\n");
+//     }
+//     else {
+//         printf("unsorted\n");
+//     }
+
+// }
