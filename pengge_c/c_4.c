@@ -480,3 +480,148 @@
 //     int age;
 //     char name[20];
 // } s1;
+
+//链表
+//根据一个节点(两个部分)找到下一个节点    内存中并不是线性存放
+//两个部分分为  数据域  指针域
+// struct Node {
+//     int data;
+//     struct Node* next;
+// };
+
+// ----------------结构体类型初始化-----------
+// struct Point {
+//     int x;
+//     int y;
+// }p1 = {2, 3}; //创建结构体时初始化
+
+// struct Score {
+//     int n;
+//     char subject[20];
+// };
+// struct Stu {
+//     char name[20];
+//     int age;
+//     struct Score s;
+// };
+// #include <stdio.h>
+// int main() {
+//     struct Point p2 = {3,4};
+//     struct Stu s1 = {"zhangsan", 18, {90, "shuxue"}};
+//     printf("%s %d %d %s\n", s1.name, s1.age, s1.s.n, s1.s.subject);
+//     return 0;
+// }
+
+// ----------------结构体内存对齐-----------
+// 首先得掌握结构体的对齐规则：
+
+// 1.第一个成员在与结构体变量偏移量为0的地址处。
+// 2.其他成员变量要对齐到某个数字（对齐数）的整数倍的地址处。   （先对齐到某个位置再进行存储，不是存储到对齐的位置）
+//   对齐数=编译器默认的一个对齐数与该成员大小的较小值。VS中默认的值为8
+    // int 为4字节 编译器默认对齐数是8   取较小的一个值 就是4
+    // char 为1字节 编译器默认对齐数是8   取较小的一个值 就是1
+
+// 3.结构体总大小为最大对齐数（每个成员变量都有一个对齐数）（取最大的一个对齐数）的整数倍。
+// 4.如果嵌套了结构体的情况，嵌套的结构体对齐到自己的最大对齐数的整数倍处，
+//   结构体的整体大小就是所有最大对齐数（含嵌套结构体的对齐数）的整数倍。
+
+// 返回结构体成员的偏移量
+// #include <stddef.h>
+// offsetof
+// offsetof (type,member)
+// struct Stu {
+//     char c1;
+//     int i;
+//     char c2;
+// };
+
+// struct Peo {
+//     char c1;
+//     char c2;
+//     int i;
+// };
+// #include <stdio.h>
+// #include <stddef.h>
+// int main () {
+//     printf("%d\n", offsetof(struct Stu, c1));   //0
+//     printf("%d\n", offsetof(struct Stu, i));    //4
+//     printf("%d\n", offsetof(struct Stu, c2));   //8
+
+//     printf("%d\n", offsetof(struct Peo, c1));   //0
+//     printf("%d\n", offsetof(struct Peo, c2));   //1
+//     printf("%d\n", offsetof(struct Peo, i));   //4
+//     return 0;
+// }
+
+//设计结构体成员时，尽量让占用空间小的成员集中在一起
+
+
+// ----------------修改对齐数-----------
+// #include <stdio.h>
+// #include <stddef.h>
+
+// #pragma pack(4) //修改对齐数为4
+// struct Peo {
+//     int i;// 0 ~ 3
+//     double a;//4 ~ 11   
+//     // 总共12个字节
+// };
+// #pragma pack()
+
+// int main () {
+//     printf("%d\n", sizeof(struct Peo));//12 
+//     return 0;
+// }
+
+
+// ----------------位(bit位)段-----------
+// // 通常是int , unsigned int , signed int , char等
+
+//冒号后面限制了存储的位数
+// struct A {
+//     int a : 2;
+//     int b : 3;
+//     int c : 5;
+// };
+
+// 1.位段的成员可以是int unsigned int signed int或者是char(属于整形家族)类型
+
+// 2.位段的空间上是按照需要以4个字节（int）或者1个字节（char）的方式来开辟的。
+
+// 3.位段涉及很多不确定因素，位段是不跨平台的，注重可移植的程序应该避免使用位段。
+
+// struct A {
+//     int a : 2;
+//     int b : 5;
+//     int c : 10;
+//     int d : 30;
+// };
+// #include <stdio.h>
+// int main() {
+//     printf("%d\n", sizeof(struct A));//8
+//     return 0;
+// }
+
+// 位段数据的存放
+
+// VS2019中，位域成员不会强行按 int 的大小占4字节，
+// 会根据实际需要最少分配字节数，并加上必要的补齐，最终结果是3字节。
+// struct A {
+//     int a : 3;
+//     int b : 4;
+//     int c : 5;
+//     int d : 4;
+// };
+// #include <stdio.h>
+// int main () {
+//     printf("%d\n", sizeof(struct A));   //4
+
+//     struct A s = {0};
+//     s.a = 10;//截断存储在3bit中
+//     s.b = 12;
+//     s.c = 3;
+//     s.d = 4;
+
+//     return 0;
+// }
+
