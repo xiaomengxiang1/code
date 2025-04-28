@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS 1
 // 实现一个通讯录：
 // 人的信息：
 // 名字+年龄+性别+电话+地址1.存放100个人的信息
@@ -18,7 +19,7 @@
 // E:\...\test.c	第一个源文件：test.c（你的主程序，里面写了 main()）
 // E:\...\contact.c	第二个源文件：contact.c（里面实现了函数，比如 Initcon(Contact*)）
 // -o E:\...\test.exe	指定输出文件的名字，生成一个 test.exe 可执行程序
-#include "contact.c"
+#include "contact.h"
 
 void menu() {
     printf("*************************************\n");
@@ -33,7 +34,7 @@ void menu() {
 int main() {
 
     int input = 0;
-    
+
     Contact con; //通讯录
     //初始化通讯录
     Initcon(&con);
@@ -43,26 +44,32 @@ int main() {
         printf("请选择:>");
         scanf("%d", &input);
         switch (input) {
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 0:
-                printf("退出程序\n");
-                break;
-            default:
-                printf("选择错误\n");
-                break;
+        case 1:
+            Addcontact(&con);
+            break;
+        case 2:
+            Delcontact(&con);
+            break;
+        case 3:
+            Searchcontact(&con);
+            break;
+        case 4:
+            Modifycontact(&con);
+            break;
+        case 5:
+            Showcontact(&con);
+            break;
+        case 6:
+            Sortcontact(&con);
+            break;
+        case 0:
+            printf("退出程序\n");
+            break;
+        default:
+            printf("选择错误\n");
+            break;
         }
-    }while (input);
+    } while (input);
 
     return 0;
 }
