@@ -5,6 +5,8 @@
 #include <assert.h>
 #include <stdlib.h>
 
+#define DEFAULT_SZ 3
+#define INC_SZ 3
 #define MAX_PEO 100
 #define MAX_NAME 20
 #define MAX_SEX 10
@@ -20,15 +22,24 @@ typedef struct PeoInfo {
     char addr[MAX_ADDR];
 }PeoInfo;
 
-
+//静态版本
 //整个通讯录信息
+//typedef struct Contact {
+//    PeoInfo data[MAX_PEO];//存放人的信息
+//    int count;//记录人的个数
+//}Contact;
+
+//动态版本
 typedef struct Contact {
-    PeoInfo data[MAX_PEO];//存放人的信息
+    PeoInfo* data;//存放人的信息
     int count;//记录人的个数
+    int capacity;//当前通讯录的容量
 }Contact;
 
+
+
 //初始化函数
-void Initcon(Contact* con);
+int Initcon(Contact* con);
 
 //添加联系人函数
 void Addcontact(Contact* con);
@@ -48,3 +59,7 @@ void Modifycontact(Contact* con);
 //排序联系人的信息
 //按名字排序
 void Sortcontact(Contact* con);
+
+//销毁通讯录
+void Destroy_contact(Contact* con);
+

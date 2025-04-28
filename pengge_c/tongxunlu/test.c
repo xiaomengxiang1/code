@@ -30,6 +30,16 @@ void menu() {
     printf("*************************************\n");
 }
 
+enum {
+    //枚举常量
+    EXIT,
+    ADD,
+    DEL,
+    SEARCH,
+    MODIFY,
+    SHOW,
+    SORT,
+};
 
 int main() {
 
@@ -44,25 +54,26 @@ int main() {
         printf("请选择:>");
         scanf("%d", &input);
         switch (input) {
-        case 1:
+        case ADD:
             Addcontact(&con);
             break;
-        case 2:
+        case DEL:
             Delcontact(&con);
             break;
-        case 3:
+        case SEARCH:
             Searchcontact(&con);
             break;
-        case 4:
+        case MODIFY:
             Modifycontact(&con);
             break;
-        case 5:
+        case SHOW:
             Showcontact(&con);
             break;
-        case 6:
+        case SORT:
             Sortcontact(&con);
             break;
-        case 0:
+        case EXIT:
+            Destroy_contact(&con);
             printf("退出程序\n");
             break;
         default:

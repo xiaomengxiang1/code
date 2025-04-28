@@ -625,3 +625,140 @@
 //     return 0;
 // }
 
+
+
+// ----------------枚举-----------
+// 枚举
+// enum Day {
+//     mon,
+//     tues,
+//     wed,
+//     thur,
+//     fir,
+//     sat,
+//     sun,
+// };
+
+// 结构体
+// struct point {
+//     int x;
+//     int y;
+// };
+
+
+//默认0 1 2 3 4  5...
+// #include <stdio.h>
+// // 枚举有类型 而#define 定义的常量没有类型
+// enum Day {
+//     //枚举常量
+//     mon = 1,
+//     tues,
+//     wed,
+//     thur,
+//     fri,
+//     sat,
+//     sun,
+// };
+
+// int main() {
+//     // enum Day d = fri;
+//     printf("%d\n", mon);
+//     printf("%d\n", tues);
+//     printf("%d\n", wed);
+//     printf("%d\n", thur);
+//     printf("%d\n", fri);
+//     printf("%d\n", sat);
+//     printf("%d\n", sun);
+
+//     return 0;
+// }
+
+
+
+// ----------------联合(共用体)-----------
+// union Un {
+//     int a;
+//     char b;
+// };
+
+// struct St {
+//     int a;
+//     int b;
+// };
+// #include <stdio.h>
+// int main() {
+//     union Un u;
+//     printf("%d\n", sizeof(u));//4
+
+//     printf("%p\n", &u);
+//     printf("%p\n", &(u.a));
+//     printf("%p\n", &(u.b));
+//     // 共用4字节
+// // 000000000061FE1C
+// // 000000000061FE1C
+// // 000000000061FE1C
+
+//     return 0;
+// }
+
+//联合体的大小,至少是最大的成员的大小(至少得要存储的了最大的那个)
+
+//判断计算机是大小端存储
+// #include <stdio.h>
+// int main() {
+//     int a = 1;//0x00 00 00 01
+//     //小 01 00 00 00
+//     //大 00 00 00 01
+//     char* p = (char*)&a;
+//     if (*p == 1) {
+//         printf("小端存储\n");
+//     }
+//     else {
+//         printf("大端存储\n");
+//     }
+
+//     return 0;
+// }
+
+// #include <stdio.h>
+// int check_sys() {
+//     // union Un {
+//     //     char c;
+//     //     int i;
+//     // }u;
+//     // u.i = 1;
+//     //可以直接写成匿名联合 因为只使用了一次
+
+//     union {
+//         char c;
+//         int i;
+//     }u;
+//     u.i = 1;
+//     return u.c;
+// }
+// int main() {
+//     int ret = check_sys();
+//     if (ret == 1) {
+//         printf("小端存储\n");
+//     }
+//     else {
+//         printf("大端存储\n");
+//     }
+//     return 0;
+// }
+
+
+// #include <stdio.h>
+// union Un {
+//     //这里相当于5个char
+//     char arr[5];
+//     int i;
+// };
+
+// int main() {
+//     printf("%d\n", sizeof(union Un));//8
+//     return 0;
+// }
+// 联合也存在对齐，i的对齐数取4,所以联合的内存大小为4的倍数,一共浪费了3字节
+
+
