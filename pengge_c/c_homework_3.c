@@ -332,13 +332,13 @@
 //     scanf("%d", &n);
 
 //     int i = 0;
-//     int Sn = 0;
-//     int An = 1;
+//     unsigned long long Sn = 0;
+//     unsigned long long An = 1;
 //     for (i = 1; i <= n; i++) {
 //         An = An * i;
 //         Sn = Sn + An;
 //     }
-//     printf("Sn = %d\n", Sn);
+//     printf("Sn = %llu\n", Sn);
 //     return 0;
 // }
 
