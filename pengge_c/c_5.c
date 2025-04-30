@@ -126,5 +126,145 @@
 // }
 
 // ---------------------------柔性数组-----------------------
+// 也许你从来没有听说过柔性数组（flexible array）这个概念，但是它确实是存在的。
+// C99 中，结构中的最后一个元素允许是未知大小的数组，这就叫做『柔性数组』成员。
 
 
+// 结构中的柔性数组成员前面必须至少一个其他成员。
+// sizeof 返回的这种结构大小不包括柔性数组的内存。
+// 包含柔性数组成员的结构用 malloc () 函数进行内存的动态分配，
+// 并且分配的内存应该大于结构的大小，以适应柔性数组的预期大小。
+
+// #include <stdio.h>
+// #include <stdlib.h>
+// struct S {
+//     int n;
+//     int arr[];//柔性数组成员
+// };
+
+// int main() {
+//     printf("%d\n", sizeof(struct S));//4
+
+//     // 开辟空间使用柔性数组
+//     struct S* ps = (struct S*)malloc(sizeof(struct S) + 40);
+//     if (ps == NULL) {
+//         return 1;
+//     }
+//     ps->n = 100;
+//     int i = 0;
+//     for (i = 0; i < 10; i++) {
+//         ps->arr[i] = i;
+//     }
+//     for (i = 0; i < 10; i++) {
+//         printf("%d ", ps->arr[i]);
+//     }
+//     printf("\n");
+//     printf("%d ", ps->n);
+//     //可以对数组扩容
+//     struct S* ptr = (struct S*)realloc(ps, sizeof(struct S*) + 80);
+//     if (ptr != NULL) {
+//         ps = ptr;
+//         ptr = NULL;
+//     }
+//     //使用完后
+//     //释放
+//     free(ps);
+//     ps = NULL;
+//     return 0;
+// }
+
+
+// #include <stdio.h>
+// #include <stdlib.h>
+// struct S {
+//     int n;//4
+//     int* arr;//8
+// };
+
+// int main() {
+//     printf("%d\n", sizeof(struct S));//16
+//     //开辟空间
+//     struct S* ps = (struct S*)malloc(sizeof(struct S));
+//     if (ps == NULL) {
+//         return 1;
+//     }
+//     ps->n = 100;
+//     ps->arr = (int *)malloc(40);
+//     if (ps->arr == NULL) {
+//         return 1;
+//     }
+//     int i = 0;
+//     for (i = 0 ; i < 10; i++) {
+//         ps->arr[i] = i;
+//     }
+//     for (i = 0; i < 10; i++) {
+//         printf("%d ", ps->arr[i]);
+//     }
+//     //扩容
+//     int* ptr = (int*)realloc(ps->arr, 80);
+//     if (ptr == NULL) {
+//         return 1;
+//     }
+//     ps->arr = ptr;
+//     ptr = NULL;
+//     //使用
+//     //释放
+//     free(ps->arr);
+//     free(ps);
+//     ps->arr = NULL;
+//     ps = NULL;
+
+//     return 0;
+// }
+
+
+// ---------------------------文件操作-----------------------
+// 只要打开一个文件就会有一个文件信息区
+
+// 不同的 C 编译器的 FILE 类型包含的内容不完全相同，但是大同小异。
+// 每当打开一个文件的时候，系统会根据文件的情况自动创建一个 FILE 结构的变量，并填充其中的信息，使用者不必关心细节。
+// 一般都是通过一个 FILE 的指针来维护这个 FILE 结构的变量，这样使用起来更加方便。
+// 下面我们可以创建一个 FILE的指针变量:
+// FILE* pf; // 文件指针变量
+// 定义 pf 是一个指向 FILE 类型数据的指针变量。
+// 可以使 pf 指向某个文件的文件信息区（是一个结构体变量）。
+// 通过该文件信息区中的信息就能够访问该文件。也就是说，通过文件指针变量能够找到与它关联的文件。
+
+
+// "r"	以只读方式打开一个已存在的文本文件。若文件不存在，打开失败。
+// "w"	以写入方式打开文本文件，若文件存在会被清空，若文件不存在会创建。
+// "a"	以追加方式打开文本文件，若文件不存在会创建，写入从文件末尾开始。
+// "rb"	以只读方式打开一个二进制文件。等价于 "r"，但处理的是二进制数据。
+// "wb"	以写入方式打开一个二进制文件，文件存在则清空，不存在则创建。
+// "ab"	以追加方式打开一个二进制文件。文件不存在则创建。
+// "r+"	以读写方式打开一个文本文件，文件必须存在。
+// "w+"	以读写方式打开一个文本文件，文件存在会清空，不存在则创建。
+// "a+"	以读写追加方式打开文本文件。读写从文件末尾开始，文件不存在则创建。
+// "rb+" / "r+b"	以读写方式打开二进制文件（不清空）。
+// "wb+" / "w+b"	以读写方式打开二进制文件（清空或创建）。
+// "ab+" / "a+b"	以读写方式打开二进制文件（写入从末尾开始）。
+
+// #include <stdio.h>
+// fopen
+// FILE* fopen( const char* filename, const char* mode );
+
+// fclose
+// int fclose ( FILE * stream );
+
+#include <stdio.h>
+#include <string.h>
+#include <errno.h>
+int main() {
+    FILE* pf = fopen("test.txt", "r");//No such file or directory
+    if (pf == NULL) {
+        printf("%s\n", strerror(errno));
+        return 1;
+    }
+    //读文件
+
+    //关闭文件
+    fclose(pf);
+    pf = NULL;
+
+    return 0;
+}
