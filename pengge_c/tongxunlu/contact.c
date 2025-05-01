@@ -10,6 +10,44 @@
 //    memset(con->data, 0, sizeof(con->data));
 //}
 
+void Check_capacity(Contact* con) {
+    if (con->count == con->capacity) {
+        PeoInfo* ptr = (PeoInfo*)realloc(con->data, (con->capacity + INC_SZ) * sizeof(PeoInfo));
+        if (ptr == NULL) {
+            printf("Addcontact::%s\n", strerror(errno));
+            return;
+        }
+        else {
+            con->data = ptr;
+            con->capacity += INC_SZ;
+            printf("增容成功\n");
+        }
+    }
+}
+    //加载文件的信息到程序
+void Load_contact(Contact* con) {
+    assert(con);
+    //打开文件
+    FILE* pfread = fopen("contact.txt", "rb");
+    if (pfread == NULL) {
+        perror("Load_contact");
+        return;
+    }
+    //读取
+    int i = 0;
+    PeoInfo temp = { 0 };
+    while (fread(&temp, sizeof(PeoInfo), 1, pfread) == 1) {
+
+        Check_capacity(con);
+        con->data[con->count] = temp;
+        con->count++;
+    }
+
+    //关闭
+    free(pfread);
+    pfread = NULL;
+}
+
 //初始化函数 动态版本
 int Initcon(Contact* con) {
     assert(con);
@@ -33,6 +71,8 @@ int Initcon(Contact* con) {
         return 1;
     }
     con->capacity = DEFAULT_SZ;
+    //加载文件的信息到程序
+    Load_contact(con);
     return 0;
 }
 
@@ -73,20 +113,7 @@ void Destroy_contact(Contact* con) {
 //    printf("增加信息成功\n");
 //}
 
-void Check_capacity(Contact* con) {
-    if (con->count == con->capacity) {
-        PeoInfo* ptr = (PeoInfo*)realloc(con->data, (con->capacity + INC_SZ) * sizeof(PeoInfo));
-        if (ptr == NULL) {
-            printf("Addcontact::%s\n", strerror(errno));
-            return;
-        }
-        else {
-            con->data = ptr;
-            con->capacity += INC_SZ;
-            printf("增容成功\n");
-        }
-    }
-}
+
 
 //添加联系人函数   动态版本
 void Addcontact(Contact* con) {
@@ -240,3 +267,21 @@ void Sortcontact(Contact* con) {
     printf("排序成功\n");
 }
 
+
+//保存通讯录信息到文件中
+void Save_contact(const Contact* con) {
+    assert(con);
+    FILE* pfwrite = fopen("contact.txt", "wb");
+    if (pfwrite == NULL) {
+        perror("Save_contact");
+        return;
+    }
+    //写入 - 二进制
+    int i = 0;
+    for (i = 0; i < con->count; i++) {
+        fwrite(con->data + i, sizeof(PeoInfo), 1, pfwrite);
+    }
+    //关闭
+    fclose(pfwrite);
+    pfwrite = NULL;
+}

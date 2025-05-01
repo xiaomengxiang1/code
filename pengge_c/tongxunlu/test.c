@@ -73,6 +73,7 @@ int main() {
             Sortcontact(&con);
             break;
         case EXIT:
+            Save_contact(&con);
             Destroy_contact(&con);
             printf("退出程序\n");
             break;

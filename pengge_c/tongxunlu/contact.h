@@ -63,3 +63,8 @@ void Sortcontact(Contact* con);
 //销毁通讯录
 void Destroy_contact(Contact* con);
 
+//保存通讯录信息到文件中
+void Save_contact(Contact* con);
+
+//加载文件的信息到程序
+void Load_contact(Contact* con);

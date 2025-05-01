@@ -23,6 +23,7 @@
         "typeinfo": "c",
         "utility": "c",
         "assert.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "errno.h": "c"
     }
 }

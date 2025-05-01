@@ -251,20 +251,310 @@
 // fclose
 // int fclose ( FILE * stream );
 
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-int main() {
-    FILE* pf = fopen("test.txt", "r");//No such file or directory
-    if (pf == NULL) {
-        printf("%s\n", strerror(errno));
-        return 1;
-    }
-    //读文件
+// #include <stdio.h>
+// #include <string.h>
+// #include <errno.h>
+// int main() {
+//     FILE* pf = fopen("test.txt", "r");//No such file or directory
+//     if (pf == NULL) {
+//         printf("%s\n", strerror(errno));
+//         return 1;
+//     }
+//     //读文件
 
-    //关闭文件
-    fclose(pf);
-    pf = NULL;
+//     //关闭文件
+//     fclose(pf);
+//     pf = NULL;
 
-    return 0;
-}
+//     return 0;
+// }
+
+
+// 字符输入函数	        fgetc	    所有输入流  读取
+// fgetc
+// int fgetc ( FILE * stream );
+
+// 字符输出函数	        fputc	    所有输出流  写入
+// fputc
+// int fputc ( int character, FILE * stream );
+
+// 文本行输入函数	    fgets	    所有输入流
+// fgets
+// char * fgets ( char * str, int num, FILE * stream );
+
+// 文本行输出函数	    fputs	    所有输出流
+// fputs
+// int fputs ( const char * str, FILE * stream );
+
+// 格式化输入函数	    fscanf	    所有输入流
+// fscanf
+// int fscanf ( FILE * stream, const char * format, ... );
+
+// scanf
+// int scanf ( const char * format, ... );
+
+// 格式化输出函数	    fprintf	    所有输出流
+// fprintf
+// int fprintf ( FILE * stream, const char * format, ... );
+
+// printf
+// int printf ( const char * format, ... );
+
+// 二进制输入	        fread	    文件
+// fread
+// size_t fread ( void * ptr, size_t size, size_t count, FILE * stream );
+
+// 二进制输出	        fwrite	    文件
+// fwrite
+// size_t fwrite ( const void * ptr, size_t size, size_t count, FILE * stream );
+
+// #include <stdio.h>
+// #include <string.h>
+// #include <errno.h>
+// int main() {
+//     //打开文件
+//     FILE* pf = fopen("test.txt", "w");
+//     if (pf == NULL) {
+//         printf("%s\n", strerror(errno));
+//     }
+//     //写入
+//     int i = 0;
+//     for (i = 'a'; i <= 'z'; i++) {
+//         fputc(i, pf);
+//     }
+//     //关闭文件
+//     fclose(pf);
+//     pf = NULL;
+//     return 0;
+// }
+
+
+// #include <stdio.h>
+// #include <string.h>
+// #include <errno.h>
+// int main() {
+//     //打开文件
+//     FILE* pf = fopen("test.txt", "r");
+//     if (pf == NULL) {
+//         printf("%s\n", strerror(errno));
+//     }
+//     //读取
+//     // int i = 0;
+//     // for (i = 1; i <= 26; i++) {
+//     //     int c = fgetc(pf);
+//     //     printf("%c ", c);
+//     // }
+//     int c;
+//     while ((c = fgetc(pf)) != EOF) {
+//         printf("%c ", c);
+//     }
+//     //关闭文件
+//     fclose(pf);
+//     pf = NULL;
+//     return 0;
+// }
+
+//写入一行
+// fputs("hello world", pf);
+
+//读取一行
+// char arr[20] = {0};
+//从pf指向的文件中读取4个字符到arr数组里,因为最后一个要补上\0,所以要只会读取4个
+// fgets(arr, 5, pf);
+
+// #include <stdio.h>
+// #include <string.h>
+// #include <errno.h>
+// struct S {
+//     char arr[20];
+//     int age;
+//     float f;
+// };
+// int main() {
+//     //打开文件
+//     FILE* pf = fopen("test.txt", "w");
+//     if (pf == NULL) {
+//         //打印出错误信息时的格式是："fopen:错误信息"
+//         perror("fopen");
+//     }
+//     //写入
+//     struct S s = {"zhangsan", 18, 50.5f};
+//     fprintf(pf, "%s %d %f", s.arr, s.age, s.f);
+//     //关闭文件
+//     fclose(pf);
+//     pf = NULL;
+//     return 0;
+// }
+
+
+// #include <stdio.h>
+// #include <string.h>
+// #include <errno.h>
+// struct S {
+//     char arr[20];
+//     int age;
+//     float f;
+// };
+// int main() {
+//     //打开文件
+//     FILE* pf = fopen("test.txt", "r");
+//     if (pf == NULL) {
+//         //打印出错误信息时的格式是："fopen:错误信息"
+//         perror("fopen");
+//     }
+//     //读取
+//     struct S s = {0};
+//     fscanf(pf, "%s %d %f", s.arr, &(s.age), &(s.f));
+
+//     printf("%s %d %f", s.arr, s.age, s.f);
+//     //关闭文件
+//     fclose(pf);
+//     pf = NULL;
+//     return 0;
+// }
+
+
+// 建议这么理解:printf是打印（输出）在屏幕上，fprintf自然就是输出到文件中，那就是写，对应w
+
+
+// 是的，一个 C 语言程序在运行时默认会打开 3 个标准 I/O 流，分别是：
+
+// 流名	类型	    标准宏	            作用
+// 标准输入流	FILE*	stdin	默认从键盘读取输入数据，供 scanf()、getchar() 等函数使用。
+// 标准输出流	FILE*	stdout	默认向屏幕输出信息，用于 printf()、puts() 等函数输出。
+// 标准错误流	FILE*	stderr	默认向屏幕输出错误信息，常用于错误提示（不会被重定向）。
+
+// #include <stdio.h>
+
+// int main() {
+//     fprintf(stdout, "这是标准输出\n");
+//     fprintf(stderr, "这是标准错误输出\n");
+//     return 0;
+// }
+
+
+// #include <stdio.h>
+// #include <string.h>
+// #include <errno.h>
+// struct S {
+//     char arr[20];
+//     int age;
+//     float score;
+// };
+// int main() {
+//     struct S s = {"zhangsan", 18, 50.5f};
+//     //打开文件
+//     FILE* pf = fopen("test.txt", "wb");
+//     if (pf == NULL) {
+//         perror("fopen");
+//         return 1;
+//     }
+//     // 二进制写入
+//     fwrite(&s, sizeof(struct S), 1, pf);
+
+//     //关闭
+//     fclose(pf);
+//     pf = NULL;
+
+//     return 0;
+// }
+
+// #include <stdio.h>
+// #include <string.h>
+// #include <errno.h>
+// struct S {
+//     char arr[20];
+//     int age;
+//     float score;
+// };
+// int main() {
+//     struct S s = {0};
+//     //打开文件
+//     FILE* pf = fopen("test.txt", "rb");
+//     if (pf == NULL) {
+//         perror("fopen");
+//         return 1;
+//     }
+//     // 二进制读取
+//     fread(&s, sizeof(struct S), 1, pf);
+//     printf("%s %d %f\n", s.arr, s.age, s.score);
+
+//     //关闭
+//     fclose(pf);
+//     pf = NULL;
+
+//     return 0;
+// }
+
+
+// 所谓“输入”就是 外部 → 程序
+// 所谓“输出”就是 程序 → 外部
+
+// | 操作         | 方向           | 理解                                       |
+// |--------------|----------------|--------------------------------------------|
+// | 从**文件中读取** | 文件 ➜ 程序    | 程序**输入**数据                            |
+// | 向**文件中写入** | 程序 ➜ 文件    | 程序**输出**数据（写东西出去）              |
+
+// scanf 是针对标准输入的格式化输入语句
+// printf 是针对标准输出的格式化输出语句
+
+// fscanf 是针对所有输入流的格式化输入语句
+// fprintf 是针对所有输出流的格式化输出语句
+
+// sscanf 从一个字符串中转化处一个格式化的数据
+// sprintf 是把一个格式化的数据转化成字符串
+
+
+//--------------文件随机读写----------------
+// fseek
+// int fseek ( FILE * stream, long int offset, int origin );
+// offset  偏移量
+
+
+// Constant	Reference position
+// SEEK_SET	Beginning of file
+// SEEK_CUR	Current position of the file pointer
+// SEEK_END	End of file *
+
+// #include <stdio.h>
+// #include <string.h>
+// #include <errno.h>
+
+// int main() {
+//     //打开文件
+//     FILE* pf = fopen("test.txt", "r");
+//     if (pf == NULL) {
+//         //打印出错误信息时的格式是："fopen:错误信息"
+//         perror("fopen");
+//     }
+//     //读取
+//     char ch = 0;
+//     ch = fgetc(pf);
+//     printf("%c\n", ch);\
+//     //计算相对于起始位置的偏移量
+//     printf("%d\n", ftell(pf));//1
+
+//     //设置文件指针
+//     fseek(pf, -1, SEEK_END);
+//     ch = fgetc(pf);
+//     printf("%c\n", ch);
+//     printf("%d\n", ftell(pf));//6
+
+//     fseek(pf, -2, SEEK_CUR);
+//     ch = fgetc(pf);
+//     printf("%c\n", ch);
+//     printf("%d\n", ftell(pf));//5
+
+//     //设置问价指针回到起始位置
+//     rewind(pf);
+//     ch = fgetc(pf);
+//     printf("%c\n", ch);
+//     printf("%d\n", ftell(pf));//1
+//     //关闭文件
+//     fclose(pf);
+//     pf = NULL;
+//     return 0;
+// }
+
+
+
