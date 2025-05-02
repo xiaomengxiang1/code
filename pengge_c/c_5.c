@@ -703,3 +703,67 @@
 // 文本替换为ClassNum
 // 可以将一个变量名拆分为两个字符串 然后合成
 
+
+
+//---------------------------条件编译-----------------------------
+// 指令	                作用
+// #if	        判断条件为真时编译后面代码
+// #ifdef	    如果宏被定义则编译代码
+// #ifndef	    如果宏没有被定义则编译代码
+// #else	    与 #if、#ifdef、#ifndef 配合使用
+// #elif	    类似 else if
+// #endif	    结束条件编译块
+
+// #include <stdio.h>
+
+// #define WINDOWS
+
+// int main() {
+// #ifdef WINDOWS
+//     printf("这是 Windows 平台\n");
+// #else
+//     printf("这是其他平台\n");
+// #endif
+//     return 0;
+// }
+
+
+//防止头文件被多次包含 只有第一次导入时有效
+// #ifndef __TEST_H__
+// #define __TEST_H__
+
+// int add(int x, int y);
+
+// #endif
+
+
+//现代写法
+// #pragma once
+
+// int add(int x, int y);
+
+
+//---------------------------offsetof宏的实现-----------------------------
+// offsetof
+// offsetof (type,member)
+// #include <stdio.h>
+// #include <stddef.h>
+
+// struct S {
+//     char c1;
+//     int i;
+//     char c2;
+// };
+// #define OFFSETOF(type,member) (size_t)&(((type*)0)->member)
+// int main() {
+//     struct S s = {0};
+//     // printf("%d\n", offsetof(struct S, c1));//0
+//     // printf("%d\n", offsetof(struct S, i));//4
+//     // printf("%d\n", offsetof(struct S, c2));//8
+
+//     printf("%d\n", OFFSETOF(struct S, c1));
+//     printf("%d\n", OFFSETOF(struct S, i));
+//     printf("%d\n", OFFSETOF(struct S, c2));
+
+//     return 0;
+// }
