@@ -283,3 +283,76 @@
 
 
 // 写一个宏可以将一个整数的二进制位的奇数位和偶数位交换
+// #include <stdio.h>
+// #define SWAP_BIT(n) (((n&0x55555555)<<1) + ((n&0xaaaaaaaa)>>1))
+// int main() {
+//     int n = 0;
+//     scanf("%d", &n);
+//     printf("%d\n", SWAP_BIT(n));
+// }
+
+// ---------------------测评--------------------
+// Fibonacci 数列是这样定义的:
+// F [0] = 0
+// F [1] = 1
+// for each i ≥ 2: F [i] = F [i - 1] + F [i - 2]
+// 因此，Fibonacci 数列就形如: 0, 1, 1, 2, 3, 5, 8, 13, ...，
+// 在 Fibonacci 数列中的数我们称为 Fibonacci 数。给你一个 N，
+// 你想让其变为一个 Fibonacci 数，每一步你可以把当前数字 X 变为 X - 1 或者 X + 1，
+// 现在给你一个数 N 求最少需要多少步可以变为 Fibonacci 数。
+
+// #include <stdio.h>
+// int main() {
+
+//     int n = 0;
+//     scanf("%d", &n);
+
+//     int An_1 = 0;
+//     int An_2 = 1;
+//     while (!(n >= An_1 && n <= An_2)) {
+//         int An = An_1 + An_2;
+//         An_1 = An_2;
+//         An_2 = An;
+//     }
+//     int ret = ((An_2 - n) > (n - An_1)) ? (n - An_1) : (An_2 - n);
+//     printf("%d\n", ret);
+//     return 0;
+// }
+
+// 请实现一个函数，将一个字符串中的每个空格替换成 “%20”。例如，当字符串为 We Are Happy. 
+// 则经过替换之后的字符串为 We%20Are%20Happy。
+// #include <stdio.h>
+// void replace(char* str, int length) {
+//     //空格个数
+//     int count = 0;
+//     while (*str != '\0') {
+//         if (*str == ' ') {
+//             count++;
+//         }
+//         str++;
+//     }
+//     char* end_str = str + length;
+//     char* new_str = str + length + count * 2;
+//     while (end_str != new_str) {
+//         if (*end_str != ' ') {
+//             *new_str = *end_str;
+//             new_str--;
+//             end_str--;
+//         }
+//         else {
+//             *new_str = '0';
+//             new_str--;
+//             *new_str = '2';
+//             new_str--;
+//             *new_str = '%';
+//             new_str--;
+
+//             end_str--;
+//         }
+//     }
+// }
+// int main() {
+//     char arr[30] = "We Are Happy";
+//     replace(arr, 12);
+//     printf("%s\n", arr);
+// }
