@@ -103,6 +103,10 @@ int SeqListFind(SL* ps, SLDataType x) {
 
 //指定pos位置插入数据
 void SeqListInsert(SL* ps, int pos, SLDataType x) {
+	if (pos > ps->size || pos < 0) {
+		printf("pos非法\n");
+		return;
+	}
 	new_memory(ps);
 	int end = ps->size;
 	while (end > pos) {

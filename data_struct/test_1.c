@@ -217,7 +217,7 @@
 // }
 
 
-// -----------------------顺序表和链表---------------------
+// -----------------------------------顺序表---------------------------------
 // 顺序表
 // 2.1 概念及结构
 // 顺序表就是数组，但是在数组的基础上，它还要求数据是连续存储的，不能跳跃间隔
@@ -232,16 +232,92 @@
 // 不要使用额外的数组空间，你必须仅使用 O (1) 额外空间并 原地 修改输入数组。
 // 元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
 
-int removeElement(int* nums, int numsSize, int val) {
-    int i = 0;
-    while (numsSize > 0) {
-        if (nums[i] == val) {
-            nums[i] = nums[numsSize - 1];  // 用最后一个元素替换
-            numsSize--;                    // 缩短数组
-        } else {
-            i++;
-        }
-    }
-    return numsSize;
-}
+// 27. 移除元素
+// https://leetcode.cn/problems/remove-element/
+
+// int removeElement(int* nums, int numsSize, int val) {
+//     int src = 0;
+//     int dst = 0;
+//     while (src < numsSize) {
+//         if (nums[src] != val) {
+//             nums[dst] = nums[src];
+//             dst++;
+//             src++;
+//         }
+//         else {
+//             src++;
+//         }
+//     }
+//     return dst;
+// }
+
+// 26. 删除有序数组中的重复项
+// https://leetcode.cn/problems/remove-duplicates-from-sorted-array/
+// int removeDuplicates(int* nums, int numsSize) {
+//     if (numsSize == 0) {
+//         return 0;
+//     }
+//     int i = 0;
+//     int j = 0;
+//     int dst = 0;
+//     while (j < numsSize) {
+//         if (nums[i] == nums[j]) {
+//             ++j;
+//         }
+//         else {
+//             nums[dst++] = nums[i];
+//             i = j;
+//             ++j;
+//         }
+//     }
+//     nums[dst++] = nums[i];
+//     return dst;
+// }
+
+
+// 88. 合并两个有序数组
+// https://leetcode.cn/problems/merge-sorted-array/description/
+// void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n) {
+//     int src_nums1 = m - 1;
+//     int src_nums2 = n - 1;
+//     int end = m + n - 1;
+//     //保证nums2处理完,并且n是大于0的
+//     while (src_nums2 >= 0) {
+//         //确保src_nums1是大于0的，防止nums1先处理完导致数组越界
+//         if (src_nums1 >= 0 && nums1[src_nums1] > nums2[src_nums2]) {
+//             nums1[end] = nums1[src_nums1];
+//             --end;
+//             --src_nums1;            
+//         }
+//         else {
+//             nums1[end] = nums2[src_nums2];
+//             --end;
+//             --src_nums2;
+//         }
+//     }
+// }
+
+// void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n) {
+//     int end1 = m - 1;
+//     int end2 = n - 1;
+//     int end = m + n - 1;
+//     while (end1 >= 0 && end2 >= 0) {
+//         if (nums1[end1] > nums2[end2]) {
+//             nums1[end--] = nums1[end1--];
+//         }
+//         else {
+//             nums1[end--] = nums2[end2--];
+//         }
+//     }
+//     while (end2 >= 0) {
+//         nums1[end--] = nums2[end2--];
+//     }
+// }
+
+
+// -----------------------------------链表---------------------------------
+// 顺序表缺陷：
+// 1、空间不够了需要增容，增容是要付出代价
+// 2、避免频繁扩容，我们满了基本都是扩 2 倍，可能就会导致一定的空间浪费
+// 3、顺序表要求数据从开始位置连续存储，那么我们在头部或者中间位置插入删除数据就需要挪动数据，效率不高
 
