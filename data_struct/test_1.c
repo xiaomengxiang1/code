@@ -384,3 +384,98 @@
 
 //     strcut ListNode* head = removeElements(n1. 7);
 // }
+
+
+// 206. 反转链表
+// https://leetcode.cn/problems/reverse-linked-list/description/
+// struct ListNode* reverseList(struct ListNode* head) {
+//     struct ListNode* prev = NULL;
+//     struct ListNode* cur = head;
+//     struct ListNode* temp = NULL;
+//     while (cur) {
+//         //存储cur下一个的地址
+//         temp = cur->next;
+//         cur->next = prev;
+//         prev = cur;
+//         cur = temp;
+//     }
+
+//     return prev;
+// }
+
+
+// 876. 链表的中间结点
+// https://leetcode.cn/problems/middle-of-the-linked-list/description/
+
+// 时间复杂度为O(N)
+// struct ListNode* middleNode(struct ListNode* head) {
+//     int count = 0;
+//     //记录总共的节点个数
+//     struct ListNode* cur = head;
+//     while (cur) {
+//         count++;
+//         cur = cur->next;
+//     }
+//     //找到中间的位置,并且计算出要走的步数
+//     count = count / 2;
+//     struct ListNode* pos = head;
+//     while (count--) {
+//         pos = pos->next;
+//     }
+//     return pos;
+// }
+
+// 只能遍历一次链表
+// struct ListNode* middleNode(struct ListNode* head) {
+//     //构造快慢指针，一个走一步，一个走两步，快的先走(n2)
+//     struct ListNode* n1 = head;
+//     struct ListNode* n2 = head;
+
+//     while (n2->next && n2) {
+//         n2 = n2->next->next;
+//         n1 = n1->next;
+//     }
+//     return n1;
+// }
+
+
+
+
+// 描述
+// 输入一个链表，输出该链表中倒数第 k 个结点。
+
+// 示例 1
+// 输入: 1,{1,2,3,4,5}
+// 返回值: {5}
+
+// 只能遍历一次链表
+// 1、fast先走k步。
+// 2、slow和fast再一起走，fast == NULL时，slow就是倒数第k个
+// struct ListNode* FindKthToTail(struct ListNode* pListHead, int k) {
+//     if (pListHead == NULL || k <= 0) {
+//         return NULL;
+//     }
+
+//     struct ListNode* fast = pListHead;
+//     struct ListNode* slow = pListHead;
+
+//     // 快指针先走 k 步
+//     for (int i = 0; i < k; i++) {
+//         if (fast == NULL) {
+//             return NULL;  // k 大于链表长度
+//         }
+//         fast = fast->next;
+//     }
+
+//      // 快慢指针同时前进
+//     while (fast) {
+//         slow = slow->next;
+//         fast = fast->next;
+//     }
+//     return slow;
+// }
+
+// 21. 合并两个有序链表
+// https://leetcode.cn/problems/merge-two-sorted-lists/description/
+
+
