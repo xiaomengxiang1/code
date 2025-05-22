@@ -321,3 +321,66 @@
 // 2、避免频繁扩容，我们满了基本都是扩 2 倍，可能就会导致一定的空间浪费
 // 3、顺序表要求数据从开始位置连续存储，那么我们在头部或者中间位置插入删除数据就需要挪动数据，效率不高
 
+
+// https://leetcode.cn/problems/remove-linked-list-elements/description/
+// 203. 移除链表元素
+
+// Definition for singly-linked list.
+// struct ListNode {
+//     int val;
+//     struct ListNode *next;
+// };
+
+// struct ListNode* removeElements(struct ListNode* head, int val) {
+//     struct ListNode* prev = NULL;
+//     struct ListNode* cur = head;
+//     //遍历链表
+//     while (cur) {
+//         //如果找到val
+//         if (cur->val == val) {
+//             //头删
+//             if (cur == head) {
+//                 head = cur->next;
+//                 free(cur);
+//                 cur = head;
+//             }
+//             //中间删除
+//             else {
+//                 //改变两个指针的位置
+//                 prev->next = cur->next;
+//                 free(cur);
+//                 cur = prev->next;
+//             }
+//         }
+//         else {
+//             //没有找到val
+//             prev = cur;
+//             cur = cur->next;
+//         }
+//     }
+//     return head;
+// }
+
+
+// 快速调试
+// struct ListNode {
+//     int val;
+//     struct ListNode *next;
+// };
+// #include <stdio.h>
+// int main() {
+//     struct ListNode* n1 = (struct ListNode*)malloc(sizeof(struct ListNode));
+//     struct ListNode* n2 = (struct ListNode*)malloc(sizeof(struct ListNode));
+//     struct ListNode* n3 = (struct ListNode*)malloc(sizeof(struct ListNode));
+//     struct ListNode* n4 = (struct ListNode*)malloc(sizeof(struct ListNode));
+//     n1->val = 7;
+//     n2->val = 7;
+//     n3->val = 7;
+//     n4->val = 7;
+//     n1->next = n2;
+//     n2->next = n3;
+//     n3->next = n4;
+//     n3->next = NULL;
+
+//     strcut ListNode* head = removeElements(n1. 7);
+// }
