@@ -388,6 +388,7 @@
 
 // 206. 反转链表
 // https://leetcode.cn/problems/reverse-linked-list/description/
+// 可以看成是对箭头的翻转
 // struct ListNode* reverseList(struct ListNode* head) {
 //     struct ListNode* prev = NULL;
 //     struct ListNode* cur = head;
@@ -477,5 +478,226 @@
 
 // 21. 合并两个有序链表
 // https://leetcode.cn/problems/merge-two-sorted-lists/description/
+// struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
+//     //创建一个新的头节点new_node
+//     struct ListNode new_node;
+//     struct ListNode* p_new_node = &new_node;
+//     new_node.next = NULL;
+//     struct ListNode* cur_1 = list1;
+//     struct ListNode* cur_2 = list2;
 
+//     while (cur_2 && cur_1 ) {
+//         //第二条小于第一条
+//         if (cur_2->val <= cur_1->val) {
+//             p_new_node->next = cur_2;
+//             cur_2 = cur_2->next;
+//         }
+//         //反之
+//         else {
+//             p_new_node->next = cur_1;
+//             cur_1 = cur_1->next;
+//         }
+//         p_new_node = p_new_node->next;
+//     }
+//     //cur_2没处理完
+//     if (cur_2) {
+//         p_new_node->next = cur_2;
+//     }
+//     else {
+//         p_new_node->next = cur_1;
+//     }
+//     return new_node.next;
+// }
+
+
+//带哨兵位的头节点
+// struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
+//     if (list1 == NULL) {
+//         return list2;
+//     }
+//     if (list2 == NULL) {
+//         return list1;
+//     }
+//     //注意sizeof(struct ListNode)
+//     struct ListNode* head = (struct ListNode*)malloc(sizeof(struct ListNode));
+//     struct ListNode* tail = head;
+
+//     struct ListNode* l1 = list1;
+//     struct ListNode* l2 = list2;
+//     while (l1 && l2) {
+//         if (l1->val < l2->val) {
+//             tail->next = l1;
+//             l1 = l1->next;
+//         }
+//         else {
+//             tail->next = l2;
+//             l2 = l2->next;
+//         }
+//         tail = tail->next;
+//     }
+
+//     if (l1) {
+//         tail->next = l1;
+//     }
+//     else {
+//         tail->next = l2;
+//     }
+//     struct ListNode* list = head->next;
+//     free(head);
+//     return list;
+// }
+
+
+
+// 描述
+// 现有一链表的头指针 ListNode* pHead，给一定值 x，
+// 编写一段代码将所有小于 x 的结点排在其余结点之前，
+// 且不能改变原来的数据顺序，返回重新排列后的链表的头指针。
+
+
+// 我们可以使用两个链表（虚拟头节点）：
+// 一个链表存放 < x 的节点
+// 另一个链表存放 >= x 的节点
+// 最后把两个链表拼接起来，返回新的头结点
+
+// struct ListNode* partition(struct ListNode* pHead, int x) {
+//     if (pHead == NULL) {
+//         return NULL;
+//     }
+
+//     struct ListNode* small_head = (struct ListNode*)malloc(sizeof(struct ListNode));
+//     struct ListNode* small_tail = small_head;
+//     struct ListNode* big_head = (struct ListNode*)malloc(sizeof(struct ListNode));
+//     struct ListNode* big_tail = big_head;
+
+//     struct ListNode* cur = pHead;
+
+//     while (cur) {
+//         struct ListNode* next = cur->next;
+//         cur->next = NULL;  // ❗断开节点原来的连接，避免环
+//         if (cur->val < x) {
+//             small_tail->next = cur;
+//             small_tail = cur;
+//         } else {
+//             big_tail->next = cur;
+//             big_tail = cur;
+//         }
+//         cur = next;
+//     }
+
+//     // 拼接两个链表
+//     small_tail->next = big_head->next;
+
+//     struct ListNode* new_head = small_head->next;
+//     free(small_head);
+//     free(big_head);
+//     return new_head;
+// }
+
+//避免死循环还可以在结尾处理big_tail的指向，使其指向NULL
+// big_tail->next = NULL；
+
+
+// 234. 回文链表
+// https://leetcode.cn/problems/palindrome-linked-list/description/
+// 自己的写法时间O(n)空间复杂度O(n)
+// bool isPalindrome(struct ListNode* head) {
+//     //倒置链表，使用带有哨兵位的头节点
+//     struct ListNode* rev_head = (struct ListNode*)malloc(sizeof(struct ListNode));
+//     struct ListNode* cur = head;
+//     //头插
+//     while (cur) {
+//         //直接创建新的节点存储cur节点的值比较方便
+//         struct ListNode* new_node = (struct ListNode*)malloc(sizeof(struct ListNode));
+//         new_node->val = cur->val;
+//         new_node->next = rev_head->next;
+//         rev_head->next = new_node;
+//         cur = cur->next;
+//     }
+//     //重置节点位置
+//     cur = head;
+//     struct ListNode* free_rev_head = rev_head;
+//     rev_head = rev_head->next;
+//     free(free_rev_head);
+//     while (cur) {
+//         if (cur->val != rev_head->val) {
+//             return false;
+//         }
+//         cur = cur->next;
+//         struct ListNode* free_rev_head = rev_head;
+//         rev_head = rev_head->next;
+//         free(free_rev_head);
+//     }
+//     return true;
+// }
+
+// 时间O(n)空间复杂度O(1)
+// 思路2，先找到链表的中间点，然后对链表中间点之后的进行翻转，最后重新从中间和开头进行比较
+
+
+// https://leetcode.cn/problems/intersection-of-two-linked-lists/description/
+// 160. 相交链表
+
+// struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *headB) {
+//     struct ListNode* curA = headA;
+//     struct ListNode* curB = headB;
+//     //记录节点个数
+//     int countA = 0;
+//     int countB = 0;
+//     //找到尾部节点，对比地址
+//     while (curA->next) {
+//         countA++;
+//         curA = curA->next;
+//     }
+//     while (curB->next) {
+//         countB++;
+//         curB = curB->next;
+//     }
+//     //不相等返回NULL
+//     if (curA != curB) {
+//         return NULL;
+//     }
+//     //重置节点
+//     curA = headA;
+//     curB = headB;
+//     //A > B , A先走A - B 步
+//     int i = 0;
+//     if (countA >= countB) {
+//         for (i = 0; i < countA - countB; i++) {
+//             curA = curA->next;
+//         }
+//     }
+//     else {
+//         for (i = 0; i < countB - countA; i++) {
+//             curB = curB->next;
+//         }
+//     }
+//     //同步走
+//     while (curA != curB) {
+//         curA = curA->next;
+//         curB = curB->next;
+//     }
+//     return curA;
+// }
+
+// 141. 环形链表
+// https://leetcode.cn/problems/linked-list-cycle/
+// bool hasCycle(struct ListNode *head) {
+//     if (head == NULL || head->next == NULL) {
+//         return false;
+//     }
+//     //快慢指针,一个一步，一个两步
+//     struct ListNode* fast = head;
+//     struct ListNode* slow = head;
+    
+//     while (fast && fast->next) {
+//         fast = fast->next->next;
+//         slow = slow->next;
+//         //两个节点的地址是否相等
+//         if (fast == slow) {
+//             return true;
+//         }
+//     }
+//     return false;
+// }
 
