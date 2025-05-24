@@ -701,3 +701,102 @@
 //     return false;
 // }
 
+// 142. 环形链表 II
+// https://leetcode.cn/problems/linked-list-cycle-ii/description/
+
+// 从头到入环点为L
+// 假设入环点到相遇点为X
+// C为环的长度
+
+// 追上相遇的过程中
+// 慢指针走的距离：L+X
+// 快指针走的距离：L+N*C+X (N>= 1)
+// N 是他们相遇之前，fast 在环里面走的圈数
+
+// 快指针走的路程是慢指针的 2 倍
+// 2 (L+X) = L+NC+X
+// L+X = NC
+// L = N*C - X
+// L = (N-1)*C + C-X
+// 得证从相遇点开始到入环点与L是等长的
+
+// struct ListNode *detectCycle(struct ListNode *head) {
+//     //先写出判断有没有环的逻辑
+//     struct ListNode* fast = head;
+//     struct ListNode* slow = head;
+//     struct ListNode* cur = head;
+//     while (fast && fast->next) {
+//         fast = fast->next->next;
+//         slow = slow->next;
+//         //相遇
+//         if (fast == slow) {
+//             //使slow和cur同时开始走，相遇点就是入环点
+//             while (cur != slow) {
+//                 cur = cur->next;
+//                 slow = slow->next;
+//             }
+//             return cur;
+//         }
+//     }
+//     return NULL;
+// }
+
+
+// struct ListNode *detectCycle(struct ListNode *head) {
+//     struct ListNode* fast = head;
+//     struct ListNode* slow = head;
+//     struct ListNode* cur = head;
+//     int cur_d = 0;
+//     int slow_d = 0;
+//     while (fast && fast->next) {
+//         fast = fast->next->next;
+//         slow = slow->next;
+//         //相遇
+//         if (fast == slow) {
+//             slow = slow->next;
+//             struct ListNode* new_slow = slow;
+//             fast->next = NULL;
+//             //断开环
+//             //分别计算两条路的长度，然后求交点
+//             while (cur) {
+//                 cur_d++;
+//                 cur = cur->next;
+//             }
+//             while (slow) {
+//                 slow_d++;
+//                 slow = slow->next;
+//             }
+
+//             int len = abs(cur_d - slow_d);
+//             //重置节点到原来的位置
+//             cur = head;
+//             //比较长度,长度大的先走
+//             slow = new_slow;
+//             if (cur_d > slow_d) {
+//                 while (len--) {
+//                     cur = cur->next;
+//                 }
+//             }
+//             else {
+//                 while (len--) {
+//                     slow = slow->next;
+//                 }
+//             }
+//             //同步走，地址相同点为交点
+//             while (cur != slow) {
+//                 cur = cur->next;
+//                 slow = slow->next;
+//             }
+//             return cur;
+//         }
+//     }
+//     return NULL;
+// }
+
+//计算完长度一定要重置节点
+// 也可以不剪断环来计算长度，在cur和slowc再次遇到meetpoint的过程计算长度就好了，这样不用直接剪断了
+
+
+// 138. 随机链表的复制
+// https://leetcode.cn/problems/copy-list-with-random-pointer/description/
+// 因为现在你知道 A' 在 A 后面，A.random 是 R，那 A'.random 就是 R.next
