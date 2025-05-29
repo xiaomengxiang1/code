@@ -799,4 +799,60 @@
 
 // 138. 随机链表的复制
 // https://leetcode.cn/problems/copy-list-with-random-pointer/description/
-// 因为现在你知道 A' 在 A 后面，A.random 是 R，那 A'.random 就是 R.next
+// 因为现在你知道 A' 在 A 后面，A.random 是 R，那 A'.random 就是 R.next(A.random.next)
+// struct Node* copyRandomList(struct Node* head) {
+//     if (head == NULL) return NULL;
+//     struct Node* cur = head;
+// 	//1.复制节点到原来的节点和下一个节点之间
+//     while (cur) {
+//         //开辟新的节点,与原来的链表链接
+//         struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+//         new_node->val = cur->val;
+//         new_node->next = cur->next;
+//         cur->next = new_node;
+
+//         cur = new_node->next;
+//     }
+// 	//2.复制random的指向
+//     cur = head;
+//     while (cur) {
+//         if (cur->random) {
+//             cur->next->random = cur->random->next;
+//         }
+//         else {
+//             cur->next->random = NULL;
+//         }
+//         cur = cur->next->next;
+//     }
+// 	//3.将原链表进行拆分
+//     cur = head;
+//     struct Node* new_head = cur->next;
+//     struct Node* tail = new_head;
+//     while (cur) {
+//         cur->next = tail->next;
+//         cur = cur->next;
+//         //先跟新cur的位置cur为NULL,则改变tail的指向
+//         if (cur) {
+//             tail->next = cur->next;
+//             tail = tail->next;
+//         }
+//         else {
+//             tail->next = NULL;
+//         }
+//     }
+//     return new_head;
+// }
+
+
+
+// -----------------------------------双向链表---------------------------------
+// 双向链表Doubly Linked List
+// 双向链表是一种比单向链表更灵活的链表结构，
+// 每个节点除了有一个 next 指针指向下一个节点之外，还有一个 prev 指针指向前一个节点
+// NULL ← A ⇄ B ⇄ C → NULL(也可以前后链接变成环)
+
+
+
+
+
+
