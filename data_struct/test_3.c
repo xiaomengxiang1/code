@@ -29,6 +29,12 @@
 
 // 所以x + x - 1 (加1或者0) = 总的节点数
 
+    // 满二叉树有 n 个节点，那它的深度 d 为：
+    // d=log 2 (n + 1)
+
+    // 完全二叉树的深度
+    // d=⌊log 2(n)⌋+1
+
 // ----------------------------------堆-----------------------------
 // 大堆：
 // 1、完全二叉树
@@ -46,3 +52,38 @@
 // 父节点下标：parent(i) = (i - 1) / 2
 // 左孩子下标：left(i) = 2 * i + 1
 // 右孩子下标：right(i) = 2 * i + 2
+
+//向下调整算法
+// void Swap(HpDataType* e1, HpDataType* e2) {
+//     HpDataType tmp = *e1;
+//     *e1 = *e2;
+//     *e2 = tmp;
+// }
+
+// void adjust(HpDataType* a, int n, int root) {
+//     int parent = root;
+//     int child = parent * 2 + 1; 
+//     //找出最小的孩子
+//     while (child < n) {
+//         if (child + 1 < n && [child + 1] < a[child]) {
+//             ++child;
+//         }
+//         //如果孩子小于父亲就交换,大于就说明完成
+//         if (a[child] < a[parent]) {
+//             Swap(&a[child], &a[parent]);
+//             parent = child;
+//             child = parent * 2 + 1;
+//         }
+//         else {
+//             break;
+//         }
+//     }
+// }
+
+// 小堆选出最小的，和数组的最后的值进行互换，然后再次建堆，数据个数为n - 1，就可以选出次小的值
+// 排完序就可以得到降序的数组，排升序相反就可以采用大堆，时间复杂度为 N * logN
+
+// 排列升序：使用大堆
+// 排列降序：使用小堆
+
+
