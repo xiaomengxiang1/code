@@ -220,3 +220,126 @@
 // }
 
 
+// 965. 单值二叉树
+// https://leetcode.cn/problems/univalued-binary-tree/description/
+
+// void prev_order(struct TreeNode* root, int val, int* i) {
+//     if (root == NULL) {
+//         return;
+//     }
+//     //比较值是否不一样
+//     if (root->val != val) {
+//        *i = 0;
+//        return;
+//     }
+//     prev_order(root->left, val, i);
+//     prev_order(root->right, val, i);
+// }
+
+// bool isUnivalTree(struct TreeNode* root) {
+//     //记录根的值，传入一个值记录是否是单值二叉树，开始时为1默认是
+//     //然后前序遍历二叉树,若和根不同直接改变i的值
+//     int val = root->val;
+//     int i = 1;
+//     prev_order(root, val, &i);
+
+//     return i;
+// }
+
+
+//写法2
+// bool isUnivalTree(struct TreeNode* root) {
+//     if (root == NULL)
+//         return true;
+
+//     // 判断当前节点是否与左子节点相等
+//     if (root->left && root->val != root->left->val)
+//         return false;
+
+//     // 判断当前节点是否与右子节点相等
+//     if (root->right && root->val != root->right->val)
+//         return false;
+
+//     // 递归判断左右子树是否满足单值要求
+//     return isUnivalTree(root->left) && isUnivalTree(root->right);
+// }
+
+
+// 将问题分解成左右树，左右树最小单位来看
+
+// 104. 二叉树的最大深度
+// https://leetcode.cn/problems/maximum-depth-of-binary-tree/description/
+// int maxDepth(struct TreeNode* root) {
+//     if (root == NULL) {
+//         return 0;
+//     }
+//     int left_depth = maxDepth(root->left);
+//     int right_depth = maxDepth(root->right);
+//     return 1 + (left_depth > right_depth ? left_depth : right_depth);
+// }
+
+// 226. 翻转二叉树
+// https://leetcode.cn/problems/invert-binary-tree/description/
+
+// struct TreeNode* invertTree(struct TreeNode* root) {
+//     //分别翻转左右树的分支，直接改变分支的指向，不该从值入手
+//     if (root == NULL) {
+//         return NULL;
+//     }
+
+//     struct TreeNode* left_next = invertTree(root->left);
+//     struct TreeNode* right_next = invertTree(root->right);
+//     root->left = right_next;
+//     root->right = left_next;
+
+//     return root;
+// }
+
+// 100. 相同的树
+// https://leetcode.cn/problems/same-tree/description/
+
+// bool isSameTree(struct TreeNode* p, struct TreeNode* q) {
+//     //同时遍历两颗树，判断值是否相等,值相当就向下递归
+//     if (p == NULL && q == NULL) {
+//         return true;
+//     }
+//     //判断两个根是否都存在
+//     if (p == NULL && q != NULL) {
+//         return false;
+//     }
+//     if (p != NULL && q == NULL) {
+//         return false;
+//     }
+//     if (p->val == q->val) {
+//         return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+//     }
+//     else {
+//         return false;
+//     }
+// }
+
+
+// 101. 对称二叉树
+// bool IsMirror(struct TreeNode* q, struct TreeNode* p) {
+//     if (q == NULL && p == NULL) {
+//         return true;
+//     }
+//     if (q == NULL || p == NULL) {
+//         return false;
+//     }
+//     if (q->val == p->val) {
+//         return IsMirror(q->left, p->right) && IsMirror(q->right, p->left);
+//     }
+//     else {
+//         return false;
+//     }
+// }
+// bool isSymmetric(struct TreeNode* root) {
+//     if (root == NULL) {
+//         return true;
+//     }
+//     return IsMirror(root->left, root->right);
+// }
+
+// 572. 另一棵树的子树
+// https://leetcode.cn/problems/subtree-of-another-tree/

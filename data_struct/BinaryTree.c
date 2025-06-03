@@ -18,7 +18,8 @@ BTNode* CreatBTNode(char x) {
     return node;
 }
 
-//树的大小
+//树的节点数量
+//若节点不为空，则至少有本节点(1)加上左树和右树的节点数
 int TreeSize(BTNode* root) {
     if (root == NULL)
         return 0;
@@ -26,7 +27,7 @@ int TreeSize(BTNode* root) {
         return 1 + TreeSize(root->left) + TreeSize(root->right);
 }
 
-//叶子数量
+//叶子数量  树的叶子数量为左树和右树的和,是否为叶子取决于树的子节点是否为空
 int TreeLeafSize(BTNode* root) {
     if (root == NULL) {
         return 0;
@@ -38,6 +39,7 @@ int TreeLeafSize(BTNode* root) {
 }
 
 //树的深度
+//深度较高的左或者右数 + 1
 int TreeDepth(BTNode* root) {
     if (root == NULL) {
         return 0;
