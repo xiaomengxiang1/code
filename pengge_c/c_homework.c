@@ -578,30 +578,30 @@
 //     return 0;
 // }
 
-#include <stdio.h>
-#include <math.h>
+// #include <stdio.h>
+// #include <math.h>
 
-int is_prime(int x) {
-    int j = 0;
-    for (j = 2; j <= sqrt(x); j++) {
-        if (x % j == 0) {
-            return 0;
-        }
-    }
-    return 1;
-}
-int main() {
-    int i = 0;
-    int count = 0;
-    for (i = 100; i <= 200; i++) {
-        if (is_prime(i)) {
-            printf("%d ", i);
-            count++;
-        }
-    }
-    printf("\ncount = %d\n", count);
-    return 0;
-}
+// int is_prime(int x) {
+//     int j = 0;
+//     for (j = 2; j <= sqrt(x); j++) {
+//         if (x % j == 0) {
+//             return 0;
+//         }
+//     }
+//     return 1;
+// }
+// int main() {
+//     int i = 0;
+//     int count = 0;
+//     for (i = 100; i <= 200; i++) {
+//         if (is_prime(i)) {
+//             printf("%d ", i);
+//             count++;
+//         }
+//     }
+//     printf("\ncount = %d\n", count);
+//     return 0;
+// }
 
 //1000到2000的闰年
 //1.能被4整除,不能被100整除
@@ -830,6 +830,7 @@ int main() {
 // }
 
 //迭代
+// #include <stdio.h>
 // int fib(int n) {
 //     int a = 1;
 //     int b = 1;

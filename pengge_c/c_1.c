@@ -445,13 +445,13 @@
 // int arr[3][4];
 // arr;
 //这里的arr表示的也是二维数组的首元素(首行，并不是[0][0])的地址
-#include <stdio.h>
-int main() {
-    int arr[3][4] = {0};
-    int sz_hang = sizeof(arr) / sizeof(arr[0]);
-    int sz_lie = sizeof(arr[0]) / sizeof(arr[0][0]);
-    int sz_zong = sizeof(arr) / sizeof(arr[0][0]);
+// #include <stdio.h>
+// int main() {
+//     int arr[3][4] = {0};
+//     int sz_hang = sizeof(arr) / sizeof(arr[0]);
+//     int sz_lie = sizeof(arr[0]) / sizeof(arr[0][0]);
+//     int sz_zong = sizeof(arr) / sizeof(arr[0][0]);
 
-    printf("%d, %d, %d\n", sz_hang, sz_lie, sz_zong);
-    return 0;
-}
+//     printf("%d, %d, %d\n", sz_hang, sz_lie, sz_zong);
+//     return 0;
+// }
