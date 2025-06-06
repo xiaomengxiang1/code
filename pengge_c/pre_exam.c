@@ -213,17 +213,17 @@
 // }
 
 
-#include <stdio.h>
-#include <string.h>
-void my_strcpy(char* arr1, char* arr2) {
-    memcpy(arr2, arr1, sizeof(char) * (strlen(arr1) + 1));
-}
+// #include <stdio.h>
+// #include <string.h>
+// void my_strcpy(char* arr1, char* arr2) {
+//     memcpy(arr2, arr1, sizeof(char) * (strlen(arr1) + 1));
+// }
 
-int main() {
-    char arr1[] = "hello world";
-    char arr2[30] = {0};
-    my_strcpy(arr1, arr2);
-    printf("%s\n", arr2);
+// int main() {
+//     char arr1[] = "hello world";
+//     char arr2[30] = {0};
+//     my_strcpy(arr1, arr2);
+//     printf("%s\n", arr2);
 
-    return 0;
-}
+//     return 0;
+// }

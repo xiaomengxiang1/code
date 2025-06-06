@@ -343,3 +343,112 @@
 
 // 572. 另一棵树的子树
 // https://leetcode.cn/problems/subtree-of-another-tree/
+// bool isSubtree(struct TreeNode* root, struct TreeNode* subRoot) {
+//     //前序遍历节点,比较每一颗树,如果一棵树相等，则返回true
+//     if (root == NULL) {
+//         return false;
+//     }
+//     if (is_same_tree(root, subRoot)) {
+//         return true;
+//     }
+//     return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
+// }
+
+
+// 110. 平衡二叉树
+// https://leetcode.cn/problems/balanced-binary-tree/description/
+
+// 时间复杂度O(N * N)
+//一颗树的高度
+// int Treehigh(struct TreeNode* root) {
+//     if (root == NULL) {
+//         return 0;
+//     }
+//     int tree_left = Treehigh(root->left);
+//     int tree_right = Treehigh(root->right);
+//     return (tree_left > tree_right ? tree_left : tree_right) + 1;
+// }
+
+// bool isBalanced(struct TreeNode* root) {
+//     if (root == NULL) {
+//         return true;
+//     }
+//     if (abs(Treehigh(root->left) - Treehigh(root->right)) <= 1) {
+//         return isBalanced(root->left) && isBalanced(root->right);
+//     }
+//     else {
+//         return false;
+//     }
+// }
+
+// 时间复杂度O(N)
+// int check_heigh(struct TreeNode* root) {
+//     if (root == NULL) 
+//         return 0;
+    
+//     int left_heigh = check_heigh(root->left);
+//     if (left_heigh == -1) 
+//         return -1;
+
+//     int right_heigh = check_heigh(root->right);
+//     if (right_heigh == -1) 
+//         return -1;
+
+//     if (abs(left_heigh - right_heigh) > 1)
+//         return -1;
+
+//     return (left_heigh > right_heigh ? left_heigh : right_heigh) + 1;
+// }
+
+// bool isBalanced(struct TreeNode* root) {
+//     return check_heigh(root) != -1;
+// }
+
+
+// 二叉树遍历
+// https://www.nowcoder.com/practice/4b91205483694f449f94c179883c1fef?tpl=60&&tqId=294838&rp=1&ru=/activity/oj&qru=/ta/tsing-kaoyan/question-ranking
+// #include <stdio.h>
+
+// typedef struct TreeNode {
+//     int val;
+//     struct TreeNode* left;
+//     struct TreeNode* right;
+// }TreeNode;
+
+// TreeNode* CreatTree(char* str, int* i) {
+//     if (str[*i] == '#') {
+//         (*i)++;
+//         return NULL;
+//     }
+//     else {
+//         TreeNode* root = (TreeNode*)malloc(sizeof(TreeNode));
+//         root->val = str[*i];
+
+//         (*i)++;
+//         root->left = CreatTree(str, i);
+//         root->right = CreatTree(str, i);
+
+//         return root;
+//     }
+// }
+
+// void Inorder(TreeNode* root) {
+//     if (root == NULL)
+//         return;
+
+//     Inorder(root->left);
+//     printf("%c ", root->val);
+//     Inorder(root->right);
+// }
+
+// int main() {
+//     char str[100];
+//     scanf("%s", str);
+//     int i = 0;
+//     TreeNode* root = CreatTree(str, &i);
+//     Inorder(root);
+
+//     return 0;
+// }
+
+
